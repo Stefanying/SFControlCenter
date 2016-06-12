@@ -1,0 +1,16 @@
+G:\svn\神服\标准产品\中控\SFControlCenter\SFLib\bin\Debug\SFLib.dll
+G:\svn\神服\标准产品\中控\SFControlCenter\SFLib\bin\Debug\SFLib.pdb
+G:\svn\神服\标准产品\中控\SFControlCenter\SFLib\obj\Debug\SFLib.dll
+G:\svn\神服\标准产品\中控\SFControlCenter\SFLib\obj\Debug\SFLib.pdb
+E:\svn\神服\标准产品\中控\SFControlCenter\SFLib\bin\Debug\SFLib.dll
+E:\svn\神服\标准产品\中控\SFControlCenter\SFLib\bin\Debug\SFLib.pdb
+E:\svn\神服\标准产品\中控\SFControlCenter\SFLib\obj\Debug\SFLib.dll
+E:\svn\神服\标准产品\中控\SFControlCenter\SFLib\obj\Debug\SFLib.pdb
+D:\svn\神服\标准产品\中控\SFControlCenter\SFLib\bin\Debug\SFLib.dll
+D:\svn\神服\标准产品\中控\SFControlCenter\SFLib\bin\Debug\SFLib.pdb
+D:\svn\神服\标准产品\中控\SFControlCenter\SFLib\obj\Debug\SFLib.dll
+D:\svn\神服\标准产品\中控\SFControlCenter\SFLib\obj\Debug\SFLib.pdb
+I:\非标项目\SFControlCenter\SFLib\bin\Debug\SFLib.dll
+I:\非标项目\SFControlCenter\SFLib\bin\Debug\SFLib.pdb
+I:\非标项目\SFControlCenter\SFLib\obj\Debug\SFLib.dll
+I:\非标项目\SFControlCenter\SFLib\obj\Debug\SFLib.pdb

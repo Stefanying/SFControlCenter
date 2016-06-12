@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9C08422B-C003-4E0C-87AD-D7DDF62A83DB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Configuring</RootNamespace>
+    <AssemblyName>Configuring</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Controlcenter\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\DefinedName.cs" />
+    <Compile Include="Business\UserDeviceName.cs" />
+    <Compile Include="Business\UserAction.cs" />
+    <Compile Include="Business\Area.cs" />
+    <Compile Include="Business\UserPrjSetting.cs" />
+    <Compile Include="Business\UserDeviceState.cs" />
+    <Compile Include="Business\UserOpration.cs" />
+    <Compile Include="Business\UserOrder.cs" />
+    <Compile Include="Business\RelaySetting.cs" />
+    <Compile Include="Business\UserRelaySetting.cs" />
+    <Compile Include="UI\Controls\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ActionSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ActionSetting.Designer.cs">
+      <DependentUpon>ActionSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\AreaSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\AreaSetting.Designer.cs">
+      <DependentUpon>AreaSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\OrderSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\OrderSetting.Designer.cs">
+      <DependentUpon>OrderSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\DeviceDataSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DeviceDataSetting.Designer.cs">
+      <DependentUpon>DeviceDataSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\PrjSwitch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\PrjSwitch.Designer.cs">
+      <DependentUpon>PrjSwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\RelayModuleSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\RelayModuleSetting.Designer.cs">
+      <DependentUpon>RelayModuleSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\RelaySwatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\RelaySwatch.Designer.cs">
+      <DependentUpon>RelaySwatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\SerialPortSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\SerialPortSetting.Designer.cs">
+      <DependentUpon>SerialPortSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\IpSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\IpSetting.Designer.cs">
+      <DependentUpon>IpSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\OprationSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\OprationSetting.Designer.cs">
+      <DependentUpon>OprationSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\SetTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\SetTime.Designer.cs">
+      <DependentUpon>SetTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\TextEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\TextEdit.Designer.cs">
+      <DependentUpon>TextEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\TimeOperationSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\TimeOperationSetting.Designer.cs">
+      <DependentUpon>TimeOperationSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserCheckBoxList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserCheckBoxList.Designer.cs">
+      <DependentUpon>UserCheckBoxList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserOprationList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserOprationList.Designer.cs">
+      <DependentUpon>UserOprationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserActionList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserActionList.Designer.cs">
+      <DependentUpon>UserActionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserAreaList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserAreaList.Designer.cs">
+      <DependentUpon>UserAreaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserRelaySettingList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserRelaySettingList.Designer.cs">
+      <DependentUpon>UserRelaySettingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserPrjStateList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserPrjStateList.Designer.cs">
+      <DependentUpon>UserPrjStateList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserTime.Designer.cs">
+      <DependentUpon>UserTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserTimeOperation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserTimeOperation.Designer.cs">
+      <DependentUpon>UserTimeOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserTimeShaft.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserTimeShaft.Designer.cs">
+      <DependentUpon>UserTimeShaft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\DeviceSerialSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DeviceSerialSetting.Designer.cs">
+      <DependentUpon>DeviceSerialSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\DeviceNameSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DeviceNameSetting.Designer.cs">
+      <DependentUpon>DeviceNameSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserPrjSettingList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserPrjSettingList.Designer.cs">
+      <DependentUpon>UserPrjSettingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserRelayStateList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserRelayStateList.Designer.cs">
+      <DependentUpon>UserRelayStateList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\RelayIdSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\RelayIdSetting.Designer.cs">
+      <DependentUpon>RelayIdSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\PcSwatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\PcSwatch.Designer.cs">
+      <DependentUpon>PcSwatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserDenfinedOprationList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserDenfinedOprationList.Designer.cs">
+      <DependentUpon>UserDenfinedOprationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserDefinedNameList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserDefinedNameList.Designer.cs">
+      <DependentUpon>UserDefinedNameList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\UserRelayList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserRelayList.Designer.cs">
+      <DependentUpon>UserRelayList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EnsureBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EnsureBox.Designer.cs">
+      <DependentUpon>EnsureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Helper.cs" />
+    <Compile Include="UI\Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Data.cs" />
+    <EmbeddedResource Include="UI\Controls\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\ActionSetting.resx">
+      <DependentUpon>ActionSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\AreaSetting.resx">
+      <DependentUpon>AreaSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\OrderSetting.resx">
+      <DependentUpon>OrderSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\DeviceDataSetting.resx">
+      <DependentUpon>DeviceDataSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\PrjSwitch.resx">
+      <DependentUpon>PrjSwitch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\RelayModuleSetting.resx">
+      <DependentUpon>RelayModuleSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\RelaySwatch.resx">
+      <DependentUpon>RelaySwatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\SerialPortSetting.resx">
+      <DependentUpon>SerialPortSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\IpSetting.resx">
+      <DependentUpon>IpSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\OprationSetting.resx">
+      <DependentUpon>OprationSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\SetTime.resx">
+      <DependentUpon>SetTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\TextEdit.resx">
+      <DependentUpon>TextEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\TimeOperationSetting.resx">
+      <DependentUpon>TimeOperationSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserCheckBoxList.resx">
+      <DependentUpon>UserCheckBoxList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserOprationList.resx">
+      <DependentUpon>UserOprationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserActionList.resx">
+      <DependentUpon>UserActionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserAreaList.resx">
+      <DependentUpon>UserAreaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserRelaySettingList.resx">
+      <DependentUpon>UserRelaySettingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserPrjStateList.resx">
+      <DependentUpon>UserPrjStateList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserTime.resx">
+      <DependentUpon>UserTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserTimeOperation.resx">
+      <DependentUpon>UserTimeOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserTimeShaft.resx">
+      <DependentUpon>UserTimeShaft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\DeviceSerialSetting.resx">
+      <DependentUpon>DeviceSerialSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\DeviceNameSetting.resx">
+      <DependentUpon>DeviceNameSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserPrjSettingList.resx">
+      <DependentUpon>UserPrjSettingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserRelayStateList.resx">
+      <DependentUpon>UserRelayStateList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\RelayIdSetting.resx">
+      <DependentUpon>RelayIdSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\PcSwatch.resx">
+      <DependentUpon>PcSwatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserDenfinedOprationList.resx">
+      <DependentUpon>UserDenfinedOprationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserDefinedNameList.resx">
+      <DependentUpon>UserDefinedNameList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UserRelayList.resx">
+      <DependentUpon>UserRelayList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EnsureBox.resx">
+      <DependentUpon>EnsureBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error.PNG" />
+    <None Include="Resources\Info.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\关闭.jpg" />
+    <None Include="Resources\关闭滑过.jpg" />
+    <None Include="Resources\最小化.jpg" />
+    <None Include="Resources\最小化滑过.jpg" />
+    <None Include="Resources\顶部背景色.png" />
+    <Content Include="logo.ico" />
+    <Content Include="setting.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SFLib\SFLib.csproj">
+      <Project>{A8FA58AC-43EA-4C3B-B8AC-1FDD100A5534}</Project>
+      <Name>SFLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
