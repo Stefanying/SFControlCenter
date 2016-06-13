@@ -45,7 +45,5 @@ namespace Configuring.Business
         {
             _deviceStates.Remove(_uds);
         }
-        
-
     }
 }

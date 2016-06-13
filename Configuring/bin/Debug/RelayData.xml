@@ -105,8 +105,8 @@
     </OperationSetting>
     <RelayData>
       <Approach Id="1">
-        <Mode Name="吸合" Data="" />
-        <Mode Name="断开" Data="" />
+        <Mode Name="吸合" Data="11111" />
+        <Mode Name="断开" Data="222222" />
       </Approach>
       <Approach Id="2">
         <Mode Name="吸合" Data="" />
