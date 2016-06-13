@@ -76,26 +76,26 @@
             this.设置ToolStripMenuItem,
             this.删除ToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(137, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(161, 92);
             // 
             // 添加ToolStripMenuItem
             // 
             this.添加ToolStripMenuItem.Name = "添加ToolStripMenuItem";
-            this.添加ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.添加ToolStripMenuItem.Text = "添加继电器";
+            this.添加ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.添加ToolStripMenuItem.Text = "添加继电器模块";
             this.添加ToolStripMenuItem.Click += new System.EventHandler(this.添加ToolStripMenuItem_Click);
             // 
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 

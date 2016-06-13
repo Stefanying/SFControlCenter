@@ -35,8 +35,8 @@ namespace Configuring.UI.Controls
             set { _prjSettings = value; }
         }
 
-        private List<RelaySetting> _relaySettings;
-        public List<RelaySetting> RelaySettings
+        private List<UserRelayArray> _relaySettings;
+        public List<UserRelayArray> RelaySettings
         {
             get { return _relaySettings; }
             set { _relaySettings = value; }
@@ -201,14 +201,14 @@ namespace Configuring.UI.Controls
                 return;
             }
 
-            PcSwatch _pcSwitch = new PcSwatch(_relaySettings, _relayComSetting);
+            PcSwatch _pcSwitch = new PcSwatch(_relaySettings);
             if (_pcSwitch.ShowDialog() == DialogResult.OK)
             {
                 CommunicationType opType = CommunicationType.Com;
                 DataType dType = DataType.Hex;
                 if (_pcSwitch.DataList.Count > 0)
                 {
-                    UserOperation OnOperation = new UserOperation(_pcSwitch.OperationNameList[0],opType,dType,_pcSwitch.Setting,_pcSwitch.DataList[0],_pcSwitch.DelayTime);
+                    UserOperation OnOperation = new UserOperation(_pcSwitch.OperationNameList[0], opType, dType, _pcSwitch.Setting, _pcSwitch.DataList[0], _pcSwitch.DelayTime);
                     UserOperation OffOperation = new UserOperation(_pcSwitch.OperationNameList[1], opType, dType, _pcSwitch.Setting, _pcSwitch.DataList[1], _pcSwitch.DelayTime);
                     AddOpration(OnOperation);
                     AddOpration(OffOperation);
@@ -222,16 +222,16 @@ namespace Configuring.UI.Controls
 
             if (_opreations == null)
             {
-                Helper.ShowMessageBox("提示","请选择对应操作项或时间点！");
+                Helper.ShowMessageBox("提示", "请选择对应操作项或时间点！");
                 return;
             }
 
-            RelaySwatch _rwRelaySwatch = new RelaySwatch(_relaySettings, _relayComSetting);
+            RelaySwatch _rwRelaySwatch = new RelaySwatch(_relaySettings);
             if (_rwRelaySwatch.ShowDialog() == DialogResult.OK)
             {
                 CommunicationType opType = CommunicationType.Com;
                 DataType dType = DataType.Hex;
-                UserOperation opration = new UserOperation(_rwRelaySwatch.OperationName,opType,dType,_rwRelaySwatch.Setting,_rwRelaySwatch.Data,_rwRelaySwatch.DelayTime);
+                UserOperation opration = new UserOperation(_rwRelaySwatch.OperationName, opType, dType, _rwRelaySwatch.Setting, _rwRelaySwatch.Data, _rwRelaySwatch.DelayTime);
                 AddOpration(opration);
             }      
         }

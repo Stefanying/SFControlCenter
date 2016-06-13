@@ -278,21 +278,21 @@
             // 
             this.relayNamePanel.Location = new System.Drawing.Point(3, 3);
             this.relayNamePanel.Name = "relayNamePanel";
-            this.relayNamePanel.Size = new System.Drawing.Size(162, 544);
+            this.relayNamePanel.Size = new System.Drawing.Size(261, 544);
             this.relayNamePanel.TabIndex = 2;
             // 
             // RelayStatePanel
             // 
-            this.RelayStatePanel.Location = new System.Drawing.Point(333, 3);
+            this.RelayStatePanel.Location = new System.Drawing.Point(486, 3);
             this.RelayStatePanel.Name = "RelayStatePanel";
-            this.RelayStatePanel.Size = new System.Drawing.Size(377, 542);
+            this.RelayStatePanel.Size = new System.Drawing.Size(492, 542);
             this.RelayStatePanel.TabIndex = 1;
             // 
             // RelaySettingPanel
             // 
-            this.RelaySettingPanel.Location = new System.Drawing.Point(168, 3);
+            this.RelaySettingPanel.Location = new System.Drawing.Point(267, 3);
             this.RelaySettingPanel.Name = "RelaySettingPanel";
-            this.RelaySettingPanel.Size = new System.Drawing.Size(162, 544);
+            this.RelaySettingPanel.Size = new System.Drawing.Size(215, 544);
             this.RelaySettingPanel.TabIndex = 0;
             // 
             // tabPage2
@@ -366,7 +366,6 @@
             this.btnDowbload.Text = "下载配置";
             this.btnDowbload.UseVisualStyleBackColor = true;
             this.btnDowbload.Click += new System.EventHandler(this.btnDowbload_Click);
-            this.btnDowbload.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.btnDowbload_ChangeUICues);
             // 
             // tbIP
             // 

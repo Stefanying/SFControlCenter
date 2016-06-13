@@ -38,6 +38,8 @@
             this.cbState = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbTime = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbRelayName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +64,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(27, 87);
+            this.label2.Location = new System.Drawing.Point(27, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 5;
@@ -71,7 +73,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(21, 279);
+            this.button1.Location = new System.Drawing.Point(21, 290);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(87, 39);
             this.button1.TabIndex = 6;
@@ -82,7 +84,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(261, 279);
+            this.button2.Location = new System.Drawing.Point(261, 290);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(87, 39);
             this.button2.TabIndex = 7;
@@ -95,7 +97,7 @@
             this.cbId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbId.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbId.FormattingEnabled = true;
-            this.cbId.Location = new System.Drawing.Point(126, 86);
+            this.cbId.Location = new System.Drawing.Point(176, 134);
             this.cbId.Name = "cbId";
             this.cbId.Size = new System.Drawing.Size(121, 24);
             this.cbId.TabIndex = 8;
@@ -105,18 +107,18 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(27, 143);
+            this.label3.Location = new System.Drawing.Point(27, 193);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 16);
             this.label3.TabIndex = 9;
-            this.label3.Text = "状态:";
+            this.label3.Text = "动作:";
             // 
             // cbState
             // 
             this.cbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbState.FormattingEnabled = true;
-            this.cbState.Location = new System.Drawing.Point(126, 140);
+            this.cbState.Location = new System.Drawing.Point(176, 185);
             this.cbState.Name = "cbState";
             this.cbState.Size = new System.Drawing.Size(121, 24);
             this.cbState.TabIndex = 10;
@@ -126,7 +128,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(27, 207);
+            this.label4.Location = new System.Drawing.Point(27, 248);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 16);
             this.label4.TabIndex = 11;
@@ -135,18 +137,41 @@
             // tbTime
             // 
             this.tbTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbTime.Location = new System.Drawing.Point(126, 204);
+            this.tbTime.Location = new System.Drawing.Point(126, 241);
             this.tbTime.Name = "tbTime";
             this.tbTime.Size = new System.Drawing.Size(171, 26);
             this.tbTime.TabIndex = 12;
             this.tbTime.Text = "0";
             this.tbTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTime_KeyPress);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(15, 96);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(136, 16);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "继电器模块名称:";
+            // 
+            // cbRelayName
+            // 
+            this.cbRelayName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRelayName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbRelayName.FormattingEnabled = true;
+            this.cbRelayName.Location = new System.Drawing.Point(176, 88);
+            this.cbRelayName.Name = "cbRelayName";
+            this.cbRelayName.Size = new System.Drawing.Size(121, 24);
+            this.cbRelayName.TabIndex = 14;
+            this.cbRelayName.SelectedIndexChanged += new System.EventHandler(this.cbRelayName_SelectedIndexChanged);
+            // 
             // RelaySwatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 351);
+            this.Controls.Add(this.cbRelayName);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.tbTime);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbState);
@@ -169,6 +194,8 @@
             this.Controls.SetChildIndex(this.cbState, 0);
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.tbTime, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
+            this.Controls.SetChildIndex(this.cbRelayName, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,5 +213,7 @@
         private System.Windows.Forms.ComboBox cbState;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbTime;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbRelayName;
     }
 }

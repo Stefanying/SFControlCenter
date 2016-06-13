@@ -33,6 +33,13 @@ namespace Configuring.UI.Controls
         }
 
 
+        //总路数
+        private int t_ApproachCount;
+        public int T_ApproachCount
+        {
+            get { return t_ApproachCount; }
+            set { t_ApproachCount = value; }
+        }
 
         public RelayIdSetting()
         {
@@ -51,7 +58,7 @@ namespace Configuring.UI.Controls
                 _id = int.Parse(tbId.Text);
                 _data_On = tbData_On.TextValue;
                 _data_Off = tbData_Off.TextValue;
-                if (CheckData(_data_On) && CheckData(_data_Off))
+                if (CheckData(_data_On) && CheckData(_data_Off) &&CheckId(tbId.Text))
                 {
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
@@ -68,13 +75,15 @@ namespace Configuring.UI.Controls
             try
             {
                 if (e.KeyChar != '\b')
-                    e.Handled = "0123456789".IndexOf(char.ToUpper(e.KeyChar))<0;
+                    e.Handled = "123456789".IndexOf(char.ToUpper(e.KeyChar))<0;
             }
             catch
             {
                 Helper.ShowMessageBox("警告","只能输入的整数");
             }
         }
+
+
 
         private bool CheckData(string data)
         {
@@ -86,6 +95,15 @@ namespace Configuring.UI.Controls
             return ret;
         }
 
+        private bool CheckId(string id)
+        {
+            bool ret = int.Parse(id)<t_ApproachCount;
+            if (!ret)
+            {
+                Helper.ShowMessageBox("提示","输入的序号超过总路数！");
+            }
+            return ret;
+        }
 
     }
 }

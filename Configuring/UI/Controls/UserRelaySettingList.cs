@@ -14,18 +14,26 @@ namespace Configuring.UI.Controls
 
         public event EventHandler OnCurrentRelayChanged;
 
-        private List<RelaySetting> _relays;
-        public List<RelaySetting> Relays
+        private List<UserRelaySetting> _relays;
+        public List<UserRelaySetting> Relays
         {
             get { return _relays; }
             set { _relays = value; }
         }
 
-        private RelaySetting _currentRelay;
-        public RelaySetting CurrentRelay
+        private UserRelaySetting _currentRelay;
+        public UserRelaySetting CurrentRelay
         {
             get { return _currentRelay; }
             set { _currentRelay = value; }
+        }
+
+        //总路数
+        private int t_ApproachCount=0;
+        public int T_ApproachCount
+        {
+            get { return t_ApproachCount; }
+            set { t_ApproachCount = value; }
         }
 
         private object _lock = new object();
@@ -36,7 +44,7 @@ namespace Configuring.UI.Controls
             InitializeComponent();
             if (dbRelayNameList.Columns.Count == 0)
             {
-                dbRelayNameList.Columns.Add("name", "继电器路数");
+                dbRelayNameList.Columns.Add("name", "继电器");
 
                 dbRelayNameList.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
              
@@ -49,29 +57,29 @@ namespace Configuring.UI.Controls
 
         }
 
-        public void AddRelayList(RelaySetting relayid)
+        public void AddRelayList(UserRelaySetting _relay)
         {
             lock (_lock)
             {
                 if (_relays != null)
                 {
-                    _relays.Add(relayid);
+                    _relays.Add(_relay);
                 }
                 else
                 {
-                    Helper.ShowMessageBox("添加失败!","添加继电器失败");
+                    Helper.ShowMessageBox("添加失败!", "添加继电器失败");
                 }
                 RefreshRelay();
             }
         }
 
-        public void DeleteRelayList(RelaySetting relayid)
+        public void DeleteRelayList(UserRelaySetting _relay)
         {
             lock (_lock)
             {
                 if (_relays != null)
                 {
-                    _relays.Remove(relayid);
+                    _relays.Remove(_relay);
                 }
 
                 RefreshRelay();
@@ -82,12 +90,11 @@ namespace Configuring.UI.Controls
         {
             dbRelayNameList.Rows.Clear();
             _currentRelay = null;
-
             if (_relays != null)
             {
-                foreach (RelaySetting relayid in _relays)
+                foreach (UserRelaySetting relaysetting in _relays)
                 {
-                    dbRelayNameList.Rows.Add(relayid.Id.ToString());
+                    dbRelayNameList.Rows.Add(relaysetting.RelayId.ToString());
                 }
             }
 
@@ -99,7 +106,7 @@ namespace Configuring.UI.Controls
 
             if (OnCurrentRelayChanged != null)
             {
-                OnCurrentRelayChanged(this,null);
+                OnCurrentRelayChanged(this, null);
             }
             
         }
@@ -130,6 +137,7 @@ namespace Configuring.UI.Controls
             {
                 contextMenuStrip.Show(Cursor.Position);
             }
+
             if (_selectRowIndex >= 0 && _currentRelay != _relays[_selectRowIndex])
             {
                 _currentRelay = _relays[_selectRowIndex];
@@ -155,44 +163,68 @@ namespace Configuring.UI.Controls
             if (_currentRelay != null)
             {
                 RelayIdSetting ris = new RelayIdSetting();
-                ris.Id = _currentRelay.Id;
+                ris.Id = _currentRelay.RelayId;
+                ris.T_ApproachCount = t_ApproachCount;
+                ris.Data_On = _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.吸合);
+                ris.Data_Off = _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开);
                 if (ris.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (RelaySetting relayid in _relays)
+                    if (!CheckId(ris.Id) || ris.Data_On == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.吸合) || ris.Data_Off == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开))
                     {
-                        if (relayid.Id == ris.Id)
-                        {
-                            Helper.ShowMessageBox("提示", "该路数已存在!");
-                            return;
-                        }
+                        _currentRelay.RelayId = ris.Id;
+                        _currentRelay.RelayOperationDatas[0].SetOperationData(RelayOperationType.吸合, ris.Data_On);
+                        _currentRelay.RelayOperationDatas[0].SetOperationData(RelayOperationType.断开, ris.Data_Off);
                     }
-                    RelaySetting _relayid = new RelaySetting(ris.Id);
-                    AddRelayList(_relayid);
+                    else
+                    {
+                        Helper.ShowMessageBox("提示", "存在相同的继电器号!");
+                    }
+                    RefreshRelay();
                 }
             }
+            
         }
 
         private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_relays == null)
+            {
+                Helper.ShowMessageBox("提示","请选择对应的继电器模组！");
+                return;
+            }
+
             RelayIdSetting ris = new RelayIdSetting();
+            ris.T_ApproachCount = t_ApproachCount;
             if (ris.ShowDialog() == DialogResult.OK)
             {
-                foreach (RelaySetting relayid in _relays)
+                if (!CheckId(ris.Id))
                 {
-                    if (relayid.Id == ris.Id)
-                    {
-                        Helper.ShowMessageBox("提示","该路数已存在!");
-                        return;
-                    }
+                    UserRelaySetting _userRelaySetting = new UserRelaySetting(ris.Id,t_ApproachCount);
+                    RelayOperationDataList _relayOperatinData = new RelayOperationDataList();
+                    _relayOperatinData.SetOperationData(RelayOperationType.吸合,ris.Data_On);
+                    _relayOperatinData.SetOperationData(RelayOperationType.断开,ris.Data_Off);
+                    _userRelaySetting.AddRelayOperationData(_relayOperatinData);
+                    AddRelayList(_userRelaySetting);
                 }
-
-                RelaySetting _relayid = new RelaySetting(ris.Id);
-                UserDeviceState _relay_On = new UserDeviceState(RelayState.吸合,ris.Data_On);
-                UserDeviceState _relay_Off = new UserDeviceState(RelayState.断开, ris.Data_Off);
-                _relayid.RelayStates.Add(_relay_On);
-                _relayid.RelayStates.Add(_relay_Off);
-                AddRelayList(_relayid);
+                else
+                {
+                    Helper.ShowMessageBox("提示","存在相同的继电器号!");
+                }
             }
+        }
+
+
+        private bool CheckId(int id)
+        {
+            for (int i = 0; i < _relays.Count; i++)
+            {
+                if (_relays[i].RelayId == id)
+                {
+                    return true;
+                }
+            }
+            return false;
+ 
         }
 
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -201,10 +233,11 @@ namespace Configuring.UI.Controls
             {
                 if (_relays != null && _relays.Count > 0 && _selectRowIndex != -1)
                 {
-                    RelaySetting _relayid = _relays[_selectRowIndex];
-                    DeleteRelayList(_relayid);
+                    UserRelaySetting _userRelaySet = _relays[_selectRowIndex];
+                    DeleteRelayList(_userRelaySet);
                 }
             }
+
         }
 
         private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -212,21 +245,25 @@ namespace Configuring.UI.Controls
             if (_currentRelay != null)
             {
                 RelayIdSetting ris = new RelayIdSetting();
-                ris.Id = _currentRelay.Id;
+                ris.Id = _currentRelay.RelayId;
+                ris.T_ApproachCount = t_ApproachCount;
+                ris.Data_On = _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.吸合);
+                ris.Data_Off = _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开);
                 if (ris.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (RelaySetting relayid in _relays)
+                    //if (!CheckId(ris.Id) || ris.Data_On == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.吸合) || ris.Data_Off == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开))
+                    if(CheckId(ris.Id))
                     {
-                        if (relayid.Id == ris.Id)
-                        {
-                            Helper.ShowMessageBox("提示", "该路数已存在!");
-                            return;
-                        }
+                        _currentRelay.RelayId = ris.Id;
+                        _currentRelay.RelayOperationDatas[0].SetOperationData(RelayOperationType.吸合,ris.Data_On);
+                        _currentRelay.RelayOperationDatas[0].SetOperationData(RelayOperationType.断开,ris.Data_Off);
                     }
-                    RelaySetting _relayid = new RelaySetting(ris.Id);
-                    AddRelayList(_relayid);
+                    else
+                    {
+                        Helper.ShowMessageBox("提示", "存在相同的继电器号!");
+                    }
+                    RefreshRelay();
                 }
- 
             }
         }
     }

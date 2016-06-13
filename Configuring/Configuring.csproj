@@ -55,7 +55,6 @@
     <Compile Include="Business\UserDeviceState.cs" />
     <Compile Include="Business\UserOpration.cs" />
     <Compile Include="Business\UserOrder.cs" />
-    <Compile Include="Business\RelaySetting.cs" />
     <Compile Include="Business\UserRelaySetting.cs" />
     <Compile Include="UI\Controls\BaseForm.cs">
       <SubType>Form</SubType>

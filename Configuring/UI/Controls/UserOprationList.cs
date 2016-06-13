@@ -47,9 +47,9 @@ namespace Configuring.UI.Controls
             set { _prjSettings = value; }
         }
 
-        //继电器
-        private List<RelaySetting> _relaySettings;
-        public List<RelaySetting> RelaySettings
+        //多个继电器模块组成的
+        private List<UserRelayArray> _relaySettings;
+        public List<UserRelayArray> RelaySettings
         {
             get { return _relaySettings; }
             set { _relaySettings = value; }
@@ -105,7 +105,6 @@ namespace Configuring.UI.Controls
                     AddContexMenu(_contextName, 自定义动作ToolStripMenuItem.DropDownItems, new EventHandler(MenuClicked));
                 }
             }
- 
         }
 
         private ToolStripMenuItem AddContexMenu(string text, ToolStripItemCollection cms, EventHandler callback)
@@ -278,7 +277,7 @@ namespace Configuring.UI.Controls
                 return;
             }
 
-            PcSwatch _pcSwitch = new PcSwatch(_relaySettings, _relayComSetting);
+            PcSwatch _pcSwitch = new PcSwatch(_relaySettings);
             if (_pcSwitch.ShowDialog() == DialogResult.OK)
             {
                 CommunicationType opType = CommunicationType.Com;
@@ -299,16 +298,16 @@ namespace Configuring.UI.Controls
 
             if (_opreations == null)
             {
-                Helper.ShowMessageBox("提示","请选择对应操作项或时间点！");
+                Helper.ShowMessageBox("提示", "请选择对应操作项或时间点！");
                 return;
             }
 
-            RelaySwatch _rwRelaySwatch = new RelaySwatch(_relaySettings, _relayComSetting);
+            RelaySwatch _rwRelaySwatch = new RelaySwatch(_relaySettings);
             if (_rwRelaySwatch.ShowDialog() == DialogResult.OK)
             {
                 CommunicationType opType = CommunicationType.Com;
                 DataType dType = DataType.Hex;
-                UserOperation opration = new UserOperation(_rwRelaySwatch.OperationName,opType,dType,_rwRelaySwatch.Setting,_rwRelaySwatch.Data,_rwRelaySwatch.DelayTime);
+                UserOperation opration = new UserOperation(_rwRelaySwatch.OperationName, opType, dType, _rwRelaySwatch.Setting, _rwRelaySwatch.Data, _rwRelaySwatch.DelayTime);
                 AddOpration(opration);
             }      
         }

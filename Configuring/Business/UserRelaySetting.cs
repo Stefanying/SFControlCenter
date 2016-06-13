@@ -14,51 +14,60 @@ namespace Configuring.Business
 
    public class RelayOperationDataList
     {
-        private string[] _operationDatas= new string[2];
-        public string[] OperationDatas
+        private string[] _operationDatas = new string[2];
+        public void SetOperationData(RelayOperationType p_type, string data)
         {
-            get { return _operationDatas; }
-            set { _operationDatas = value; }
+            _operationDatas[(int)p_type] = data;
         }
+
+        public string GetOperationData(RelayOperationType p_type)
+        {
+            return _operationDatas[(int)p_type];
+        }
+
     }
 
     //继电器模块设置
    public class UserRelaySetting
     {
-       //单个继电器模块名称
-        private string _relayName;
-        public string RelayName
+     
+       //继电器序号
+        private int _relayId;
+        public int RelayId
         {
-            get { return _relayName; }
-            set { _relayName = value; }
+            get { return _relayId; }
+            set { _relayId = value; }
+        }
+        private static int _approachCount =0;
+
+        List<RelayOperationDataList> _relayOperationDatas;
+        public List<RelayOperationDataList> RelayOperationDatas
+        {
+            get { return _relayOperationDatas; }
+            set { _relayOperationDatas = value; }
+        }
+        
+
+        public UserRelaySetting( int id,int p_approachCout)
+        {
+            _relayId = id;
+            _approachCount = p_approachCout;
+            _relayOperationDatas = new List<RelayOperationDataList>();
         }
 
-
-        private RelayOperationDataList[] _relayDatas;
-
-        public UserRelaySetting(string p_name, int p_approachCout)
+        public void AddRelayOperationData(RelayOperationDataList p_relayOperationData)
         {
-            _relayDatas = new RelayOperationDataList[p_approachCout];
-            _relayName = p_name;
+            _relayOperationDatas.Add(p_relayOperationData);
         }
 
-       //获取对应序号的对应状态的继电器数据
-        public string GetOperationData(int p_relayIndex, RelayOperationType p_type)
+        public void RemoveRelayOperationData(RelayOperationDataList p_relayOperationData)
         {
-            if (p_relayIndex < 0 || p_relayIndex >= _relayDatas.Length)
-                return null;
-            return _relayDatas[p_relayIndex].OperationDatas[(int)p_type];
-        }
-
-        public void SetOperationData(int p_relayIndex, RelayOperationType p_type,string p_data)
-        {
-            if (p_relayIndex < 0 || p_relayIndex >= _relayDatas.Length)
-                return;
-            _relayDatas[p_relayIndex].OperationDatas[(int)p_type]= p_data;
-        }
+            _relayOperationDatas.Remove(p_relayOperationData);
+        }     
     }
 
-   public class UserRelay
+    //继电器模块管理（包含多个继电器模块）
+   public class UserRelayArray
    {
        string _name;
        public string Name
@@ -67,7 +76,7 @@ namespace Configuring.Business
            set { _name = value; }
        }
 
-       //每个继电器操作数据
+       //每个继电器模块
        List<UserRelaySetting> _relayOperationDatas;
        public List<UserRelaySetting> RelayOperationDatas
        {
@@ -84,7 +93,7 @@ namespace Configuring.Business
        }
 
 
-       //
+       //路数继电器拥有多少路
        private int _approachCout;
        public int ApproachCout
        {
@@ -92,7 +101,7 @@ namespace Configuring.Business
            set { _approachCout = value; }
        }
 
-       public UserRelay(string p_name,ComSetting relaycom,int p_approachCount)
+       public UserRelayArray(string p_name,ComSetting relaycom,int p_approachCount)
        {
            _name = p_name;
            _relayCom = relaycom;

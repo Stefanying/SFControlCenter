@@ -81,9 +81,9 @@
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(25, 213);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 16);
+            this.label1.Size = new System.Drawing.Size(93, 16);
             this.label1.TabIndex = 7;
-            this.label1.Text = "配置：";
+            this.label1.Text = "串口配置：";
             // 
             // btnSet
             // 
@@ -118,7 +118,7 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // RelaySetting
+            // RelayModuleSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,7 +131,7 @@
             this.Controls.Add(this.lbCount);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.lbName);
-            this.Name = "RelaySetting";
+            this.Name = "RelayModuleSetting";
             this.Text = "RelaySetting";
             this.Controls.SetChildIndex(this.lbName, 0);
             this.Controls.SetChildIndex(this.tbName, 0);

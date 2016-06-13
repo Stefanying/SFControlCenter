@@ -41,38 +41,32 @@ namespace Configuring.UI.Controls
             set { _time = value; tbTime.Text = value.ToString(); }
         }
 
-        private List<RelaySetting> _relaySettings;
-        public List<RelaySetting> RelaySettings
+ 
+
+        //多个继电器模块组成的
+        private List<UserRelayArray> _relayModuleList;
+        public List<UserRelayArray> RelayModuleList
         {
-            get { return _relaySettings; }
-            set { _relaySettings = value; }
+            get { return _relayModuleList; }
+            set { _relayModuleList = value; }
         }
 
-        private ComSetting _relayCom;
-
-        public RelaySwatch(List<RelaySetting> _relaysets, ComSetting relayCom)
+        public RelaySwatch(List<UserRelayArray> _relaysets)
         {
             InitializeComponent();
             try
             {
-                _relaySettings = _relaysets;
-                _relayCom = relayCom;
-                foreach (RelaySetting _rs in _relaysets)
+                _relayModuleList = _relaysets;
+                foreach (UserRelayArray _relayArray in _relaysets)
                 {
-                    cbId.Items.Add(_rs.Id);
+                    cbRelayName.Items.Add(_relayArray.Name);
                 }
 
-                _comNumber = relayCom.ComNumber;
-                _baudRate = relayCom.BaudRate;
-                _dataBits = relayCom.DataBits;
-                _stopBits = relayCom.StopBits;
-                _parity = relayCom.Parity;
-
-
-                if (cbId.Items.Count > 0)
+                if (cbRelayName.Items.Count > 0)
                 {
-                    cbId.SelectedIndex = 0;
+                    cbRelayName.SelectedIndex = 0;
                 }
+
             }
             catch(Exception ex)
             {
@@ -86,46 +80,102 @@ namespace Configuring.UI.Controls
         int _stopBits = 0;
         Parity _parity;
 
+        private void cbRelayName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbId.Items.Clear();
+            if (_relayModuleList.Count > 0 && _relayModuleList != null)
+            {
+                for (int i = 0; i < _relayModuleList.Count; i++)
+                {
+                    if (cbRelayName.SelectedItem.ToString() == _relayModuleList[i].Name)
+                    {
+                        _comNumber = _relayModuleList[i].RelayCom.ComNumber;
+                        _baudRate = _relayModuleList[i].RelayCom.BaudRate;
+                        _dataBits = _relayModuleList[i].RelayCom.DataBits;
+                        _stopBits = _relayModuleList[i].RelayCom.StopBits;
+                        _parity = _relayModuleList[i].RelayCom.Parity;
+                        foreach (UserRelaySetting _userRelayset in _relayModuleList[i].RelayOperationDatas)
+                        {
+                            cbId.Items.Add(_userRelayset.RelayId);
+                        }
+                    }
+                }
+            }
+            if (cbId.Items.Count > 0)
+            {
+                cbId.SelectedIndex = 0;
+            }
+        }
+
 
         private void cbId_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbState.Items.Clear();
-            if (_relaySettings.Count > 0 && _relaySettings != null)
+            if (_relayModuleList.Count > 0 && _relayModuleList != null)
             {
-                for (int i = 0; i < _relaySettings.Count; i++)
+                for (int i = 0; i < _relayModuleList.Count; i++)
                 {
-                    if (cbId.SelectedItem.ToString() == _relaySettings[i].Id.ToString())
+                    if (cbRelayName.SelectedItem.ToString() == _relayModuleList[i].Name)
                     {
-                        foreach (UserDeviceState uds in _relaySettings[i].RelayStates)
+                        foreach (UserRelaySetting _userRelaySet in _relayModuleList[i].RelayOperationDatas)
                         {
-                            cbState.Items.Add(uds.RelaysState.ToString());
+                            if (cbId.SelectedItem.ToString() == _userRelaySet.RelayId.ToString())
+                            {
+                                cbState.Items.Add(RelayOperationType.吸合.ToString());
+                                cbState.Items.Add(RelayOperationType.断开.ToString());
+                            }
                         }
- 
                     }
                 }
             }
+            if (cbState.Items.Count > 0)
+            {
+                cbState.SelectedIndex = 0;
+ 
+            }
+        }
 
-       
+        string GetRelayStateType(RelayOperationType _state)
+        {
+            string ret = "吸合";
+            switch (_state)
+            {
+                case RelayOperationType.吸合:
+                    ret = "吸合";
+                    break;
+                case RelayOperationType.断开:
+                    ret = "断开";
+                    break;
+            }
+            return ret;
         }
 
         private void cbState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_relaySettings.Count > 0 && _relaySettings != null)
+            if (_relayModuleList.Count > 0 && _relayModuleList != null)
             {
-                for (int i = 0; i < _relaySettings.Count; i++)
+                for (int i = 0; i < _relayModuleList.Count; i++)
                 {
-                    if (cbId.SelectedItem.ToString() == _relaySettings[i].Id.ToString())
+                    if (cbRelayName.SelectedItem.ToString() == _relayModuleList[i].Name)
                     {
-                        foreach (UserDeviceState uds in _relaySettings[i].RelayStates)
+                        foreach (UserRelaySetting _userRelaySet in _relayModuleList[i].RelayOperationDatas)
                         {
-                            if (cbState.SelectedItem.ToString() == uds.RelaysState.ToString())
+                            if (cbId.SelectedItem.ToString() == _userRelaySet.RelayId.ToString())
                             {
-                                Data = uds.Data;
+                                if (cbState.SelectedItem.ToString() == GetRelayStateType(RelayOperationType.吸合))
+                                {
+                                    Data = _userRelaySet.RelayOperationDatas[0].GetOperationData(RelayOperationType.吸合);
+                                }
+                                else if (cbState.SelectedItem.ToString() == GetRelayStateType(RelayOperationType.断开))
+                                {
+                                    Data = _userRelaySet.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开);
+                                }
                             }
                         }
-
                     }
+ 
                 }
+ 
             }
 
             if (cbState.Items.Count > 0)
@@ -177,7 +227,7 @@ namespace Configuring.UI.Controls
                 }
                 if (tbName.Text =="")
                 {
-                    _operationName = cbState.SelectedItem.ToString() + cbId.SelectedItem.ToString();
+                    _operationName = cbRelayName.SelectedItem.ToString()+cbState.SelectedItem.ToString() + cbId.SelectedItem.ToString();
                 }
                 else
                 {
@@ -185,6 +235,12 @@ namespace Configuring.UI.Controls
  
                 }
                 _time = int.Parse(tbTime.Text);
+
+                if (Data.Length <= 0)
+                {
+                    Helper.ShowMessageBox("提示","数据不为空!");
+                    return;
+                }
 
                 if (CheckTime(_time) && CheckData(Data))
                 {
@@ -201,6 +257,8 @@ namespace Configuring.UI.Controls
         {
             DialogResult = DialogResult.Cancel;
         }
+
+       
 
 
     }

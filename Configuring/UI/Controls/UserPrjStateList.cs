@@ -34,7 +34,7 @@ namespace Configuring.UI.Controls
 
             if (dbPrjStateList.Columns.Count == 0)
             {
-                dbPrjStateList.Columns.Add("name","状态");
+                dbPrjStateList.Columns.Add("name","命令");
                 dbPrjStateList.Columns.Add("data","串口数据");
 
                 dbPrjStateList.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -93,7 +93,6 @@ namespace Configuring.UI.Controls
                     dbPrjStateList.Rows[_PrjStates.Count - 1].Selected = true;
                     _currentPrjState = _PrjStates[_PrjStates.Count - 1];
                 }
- 
             }
         }
 

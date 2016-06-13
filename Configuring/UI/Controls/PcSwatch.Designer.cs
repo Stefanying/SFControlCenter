@@ -39,6 +39,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbName2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbRelayName = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(39, 263);
+            this.label2.Location = new System.Drawing.Point(39, 317);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 5;
@@ -98,7 +100,7 @@
             this.cbId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbId.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbId.FormattingEnabled = true;
-            this.cbId.Location = new System.Drawing.Point(138, 256);
+            this.cbId.Location = new System.Drawing.Point(168, 312);
             this.cbId.Name = "cbId";
             this.cbId.Size = new System.Drawing.Size(121, 24);
             this.cbId.TabIndex = 8;
@@ -108,7 +110,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(31, 339);
+            this.label4.Location = new System.Drawing.Point(31, 366);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 16);
             this.label4.TabIndex = 11;
@@ -117,7 +119,7 @@
             // tbTime
             // 
             this.tbTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbTime.Location = new System.Drawing.Point(130, 330);
+            this.tbTime.Location = new System.Drawing.Point(130, 359);
             this.tbTime.Name = "tbTime";
             this.tbTime.Size = new System.Drawing.Size(171, 26);
             this.tbTime.TabIndex = 12;
@@ -157,11 +159,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "电脑开关机步骤";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(39, 266);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 16);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "继电器模块:";
+            // 
+            // cbRelayName
+            // 
+            this.cbRelayName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRelayName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cbRelayName.FormattingEnabled = true;
+            this.cbRelayName.Location = new System.Drawing.Point(168, 263);
+            this.cbRelayName.Name = "cbRelayName";
+            this.cbRelayName.Size = new System.Drawing.Size(121, 24);
+            this.cbRelayName.TabIndex = 17;
+            this.cbRelayName.SelectedIndexChanged += new System.EventHandler(this.cbRelayName_SelectedIndexChanged);
+            // 
             // PcSwatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 509);
+            this.Controls.Add(this.cbRelayName);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbTime);
             this.Controls.Add(this.label4);
@@ -178,6 +203,8 @@
             this.Controls.SetChildIndex(this.label4, 0);
             this.Controls.SetChildIndex(this.tbTime, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.cbRelayName, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -198,5 +225,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbName2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbRelayName;
     }
 }

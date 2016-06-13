@@ -12,18 +12,18 @@ namespace Configuring.UI.Controls
     public partial class UserRelayStateList : UserControl
     {
 
-        private List<UserDeviceState> _relayStates;
-        public List<UserDeviceState> RelayStates
+        private List<RelayOperationDataList> _relayOperationDataList;
+        public List<RelayOperationDataList> RelayOperationDataList
         {
-            get { return _relayStates; }
-            set { _relayStates = value; }
+            get { return _relayOperationDataList; }
+            set { _relayOperationDataList = value; }
         }
 
-        private UserDeviceState _currentRelayState;
-        public UserDeviceState CurrentRelayState
+        private RelayOperationDataList _currentRelayOpDataList;
+        public RelayOperationDataList CurrentRelayOpDataList
         {
-            get { return _currentRelayState; }
-            set { _currentRelayState = value; }
+            get { return _currentRelayOpDataList; }
+            set { _currentRelayOpDataList = value; }
         }
 
         private object _lock = new object();
@@ -34,7 +34,7 @@ namespace Configuring.UI.Controls
 
             if (dbRelayStateList.Columns.Count == 0)
             {
-                dbRelayStateList.Columns.Add("name","状态");
+                dbRelayStateList.Columns.Add("name","命令");
                 dbRelayStateList.Columns.Add("data","串口数据");
 
                 dbRelayStateList.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -49,78 +49,37 @@ namespace Configuring.UI.Controls
             RefreshRelayStateList();
         }
 
-        public void AddRelayState(UserDeviceState uds)
-        {
-            lock (_lock)
-            {
-                if (_relayStates != null)
-                {
-                    _relayStates.Add(uds);
-                }
-
-                RefreshRelayStateList();
-            }
-        }
-
-        public void DeleteRelayState(UserDeviceState uds)
-        {
-            lock (_lock)
-            {
-                if (_relayStates != null)
-                {
-                    _relayStates.Remove(uds);
-                }
-                RefreshRelayStateList();
-            }
-        }
-
         public void RefreshRelayStateList()
         {
             lock (_lock)
             {
                 dbRelayStateList.Rows.Clear();
-                _currentRelayState = null;
-                if (_relayStates != null)
+                _currentRelayOpDataList = null;
+                if (_relayOperationDataList != null)
                 {
-                    foreach (UserDeviceState uds in _relayStates)
+                    foreach (RelayOperationDataList _relayOpData in _relayOperationDataList)
                     {
-                        dbRelayStateList.Rows.Add(GetRelayStateType(uds.RelaysState), uds.Data);
+                        dbRelayStateList.Rows.Add(GetRelayStateType(RelayOperationType.吸合),_relayOpData.GetOperationData(RelayOperationType.吸合));
+                        dbRelayStateList.Rows.Add(GetRelayStateType(RelayOperationType.断开),_relayOpData.GetOperationData(RelayOperationType.断开));
+                    }
+                    if (_relayOperationDataList != null && _relayOperationDataList.Count > 0)
+                    {
+                        dbRelayStateList.Rows[_relayOperationDataList.Count - 1].Selected = true;
+                        _currentRelayOpDataList = _relayOperationDataList[_relayOperationDataList.Count - 1];
                     }
                 }
-
-                if (_relayStates != null && _relayStates.Count > 0)
-                {
-                    dbRelayStateList.Rows[_relayStates.Count - 1].Selected = true;
-                    _currentRelayState = _relayStates[_relayStates.Count - 1];
-                }
- 
             }
         }
 
-        string GetPrjModeType(PrjState _mode)
-        {
-            string ret = "开";
-            switch (_mode)
-            {
-                case PrjState.开:
-                    ret = "开";
-                    break;
-                case PrjState.关:
-                    ret = "关";
-                    break;
-            }
-            return ret;
-        }
-
-        string GetRelayStateType(RelayState _state)
+        string GetRelayStateType(RelayOperationType _state)
         {
             string ret = "吸合";
             switch (_state)
             {
-                case RelayState.吸合:
+                case RelayOperationType.吸合:
                     ret = "吸合";
                     break;
-                case RelayState.断开:
+                case RelayOperationType.断开:
                     ret = "断开";
                     break;
             }
@@ -135,12 +94,6 @@ namespace Configuring.UI.Controls
             {
                 contextMenuStrip.Show(Cursor.Position);
             }
-
-            if (_relayStates != null && _relayStates.Count > 0)
-            {
-                _currentRelayState = _relayStates[_selectRowIndex];
-                dbRelayStateList.Rows[_selectRowIndex].Selected = true;
-            }
         }
 
         private void dbPrjStateList_MouseClick(object sender, MouseEventArgs e)
@@ -151,59 +104,33 @@ namespace Configuring.UI.Controls
             }
         }
 
-        private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeviceDataSetting dds = new DeviceDataSetting();
-            if (dds.ShowDialog() == DialogResult.OK)
-            {
-                RelayState _relayState = (RelayState)Enum.Parse(typeof(RelayState),dds.StateName);
-                UserDeviceState uds = new UserDeviceState(_relayState,dds.Data);
-                AddRelayState(uds);
-            }
-        }
-
-        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Helper.ShowMessageBox("确认", "确定删除？") == DialogResult.OK)
-            {
-                if (_relayStates != null && _relayStates.Count > 0 && _currentRelayState != null)
-                {
-                    DeleteRelayState(_currentRelayState);
-                    RefreshRelayStateList();
-                }
-            }
-        }
-
         private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_currentRelayState != null)
+            if (_currentRelayOpDataList != null)
             {
                 DeviceDataSetting dds = new DeviceDataSetting();
-                dds.StateName = GetRelayStateType(_currentRelayState.RelaysState);
-                dds.Data = _currentRelayState.Data;
+                Console.WriteLine(_selectRowIndex);
+                dds.StateName = GetRelayStateType((RelayOperationType)_selectRowIndex);
+                dds.Data = _currentRelayOpDataList.GetOperationData((RelayOperationType)_selectRowIndex);
                 if (dds.ShowDialog() == DialogResult.OK)
                 {
-                    RelayState _relayState = (RelayState)Enum.Parse(typeof(RelayState), dds.StateName);
-                   _currentRelayState.RelaysState =_relayState;
-                   _currentRelayState.Data = dds.Data;
-                   RefreshRelayStateList();
+                    _currentRelayOpDataList.SetOperationData((RelayOperationType)_selectRowIndex,dds.Data);
+                    RefreshRelayStateList();
                 }
             }
         }
 
         private void dbPrjStateList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (_currentRelayState != null)
+            if (_currentRelayOpDataList != null)
             {
                 DeviceDataSetting dds = new DeviceDataSetting();
-                dds.StateName = GetPrjModeType(_currentRelayState.DeviceMode);
-                dds.Data = _currentRelayState.Data;
+                Console.WriteLine(_selectRowIndex);
+                dds.StateName = GetRelayStateType((RelayOperationType)_selectRowIndex);
+                dds.Data = _currentRelayOpDataList.GetOperationData((RelayOperationType)_selectRowIndex);
                 if (dds.ShowDialog() == DialogResult.OK)
                 {
-                    PrjState _mode = (PrjState)Enum.Parse(typeof(PrjState), dds.StateName);
-                    RelayState _relayState = (RelayState)Enum.Parse(typeof(RelayState), dds.StateName);
-                    _currentRelayState.DeviceMode = _mode;
-                    _currentRelayState.Data = dds.Data;
+                    _currentRelayOpDataList.SetOperationData((RelayOperationType)_selectRowIndex, dds.Data);
                     RefreshRelayStateList();
                 }
             }

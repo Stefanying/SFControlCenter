@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dbRelayNameList = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.添加继电器信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dbRelayNameList)).BeginInit();
@@ -72,25 +71,16 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.添加继电器信息ToolStripMenuItem,
-            this.删除ToolStripMenuItem,
-            this.设置ToolStripMenuItem});
+            this.设置ToolStripMenuItem,
+            this.删除ToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(161, 92);
-            // 
-            // 添加继电器信息ToolStripMenuItem
-            // 
-            this.添加继电器信息ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.添加继电器信息ToolStripMenuItem.Name = "添加继电器信息ToolStripMenuItem";
-            this.添加继电器信息ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.添加继电器信息ToolStripMenuItem.Text = "添加继电器信息";
-            this.添加继电器信息ToolStripMenuItem.Click += new System.EventHandler(this.添加ToolStripMenuItem_Click);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 70);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
@@ -98,7 +88,7 @@
             // 
             this.设置ToolStripMenuItem.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
@@ -120,7 +110,6 @@
 
         private System.Windows.Forms.DataGridView dbRelayNameList;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem 添加继电器信息ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
     }

@@ -39,8 +39,8 @@ namespace Configuring.UI
         Controls.UserPrjSettingList _prjsettinglist = new Controls.UserPrjSettingList();//常用投影机设置
         Controls.UserPrjStateList _prjstatelist = new Controls.UserPrjStateList();//常用投影机开关数据配置
 
-        Controls.UserRelayList _relaylist = new Controls.UserRelayList();
-        Controls.UserRelaySettingList _relaysettinglist = new Controls.UserRelaySettingList();//常用继电器设置
+        Controls.UserRelayList _relayModulelist = new Controls.UserRelayList();//常用继电器模组数据配置
+        Controls.UserRelaySettingList _relaysettinglist = new Controls.UserRelaySettingList();//常用继电器数据配置
         Controls.UserRelayStateList _relaystatelist = new Controls.UserRelayStateList();//常用继电器数据配置
 
         Controls.UserDefinedOprationList _userdefinedlist = new Controls.UserDefinedOprationList();//自定义命令配置
@@ -51,10 +51,10 @@ namespace Configuring.UI
         List<UserAction> _shaft_actions = new List<UserAction>();
         List<UserPrjSetting> _prjSettings = new List<UserPrjSetting>();
         List<UserDeviceState> _prjStates = new List<UserDeviceState>();
-        List<RelaySetting> _relayIds = new List<RelaySetting>();
+       // List<RelaySetting> _relayIds = new List<RelaySetting>();
         List<UserDeviceState> _relayStates = new List<UserDeviceState>();
         List<DefinedName> _userdefineNames = new List<DefinedName>();
-        List<UserRelay> _relays = new List<UserRelay>();
+        List<UserRelayArray> _relays = new List<UserRelayArray>();
         ComSetting _relayComSetting = new ComSetting();
         public MainForm()
         {
@@ -101,14 +101,14 @@ namespace Configuring.UI
 
             //常用继电器配置
             relayNamePanel.Controls.Clear();
-            relayNamePanel.Controls.Add(_relaylist);
-            _relaylist.Relays = _relays;
-            _relaylist.OnCurrentRelayChanged += OnUserRelayListUpdated;
-            _relaylist.Dock = DockStyle.Fill;
+            relayNamePanel.Controls.Add(_relayModulelist);
+            _relayModulelist.RelayModules = _relays;
+            _relayModulelist.OnCurrentRelayChanged += OnUserRelayListUpdated;
+            _relayModulelist.Dock = DockStyle.Fill;
 
             RelaySettingPanel.Controls.Clear();
             RelaySettingPanel.Controls.Add(_relaysettinglist);
-            _relaysettinglist.Relays = _relayIds;
+            //_relaysettinglist.Relays = _relayIds;
             _relaysettinglist.OnCurrentRelayChanged += OnRelaySettingListUpdated;
             _relaysettinglist.Dock = DockStyle.Fill;
 
@@ -142,7 +142,7 @@ namespace Configuring.UI
             _timeList.RefreshTime();
             _shaftList.RefreshActionList();
             _prjsettinglist.RefreshPrjSetting();
-            _relaylist.RefreshRelayList();
+            _relayModulelist.RefreshRelayList();
             _relaysettinglist.RefreshRelay();
             _userdefinedNamelist.RefreshAreaList();
             tbIP.Text = Utility.Data.GetInstance().GetIP();
@@ -180,28 +180,13 @@ namespace Configuring.UI
  
             }
 
-            if (_relayIds.Count > 0)
+            if (_relays.Count > 0 && _relays != null)
             {
-                _oprationlist.RelaySettings = _relayIds;
-                if (_relayComSetting != null)
-                {
-
-                    _oprationlist.RelayComSetting = _relayComSetting;
-                }
-                else
-                {
-                    //_relayComSetting.ComNumber = cbComNumber.Text;
-                    //_relayComSetting.BaudRate = int.Parse(cbBaudrate.Text);
-                    //_relayComSetting.DataBits = int.Parse(cbDatabit.Text);
-                    //_relayComSetting.StopBits = int.Parse(cbStopbit.Text);
-                    //Parity _parity = (Parity)cbParity.SelectedIndex;
-                    //_relayComSetting.Parity = _parity;
-                }
+                _oprationlist.RelaySettings = _relays;
             }
             else
             {
                 _oprationlist.RelaySettings = null;
- 
             }
             
             _oprationlist.RefreshOprations();
@@ -265,20 +250,28 @@ namespace Configuring.UI
 
         private void OnUserRelayListUpdated(object sender, EventArgs e)
         {
-         
+            if (_relayModulelist.CurrentRelayModule != null)
+            {
+                _relaysettinglist.T_ApproachCount = _relayModulelist.CurrentRelayModule.ApproachCout;
+                _relaysettinglist.Relays = _relayModulelist.CurrentRelayModule.RelayOperationDatas;
+            }
+            else
+            {
+                _relaysettinglist.Relays = null;
+            }
+            _relaysettinglist.RefreshRelay();
         }
 
         private void OnRelaySettingListUpdated(object sender, EventArgs e)
         {
             if (_relaysettinglist.CurrentRelay != null)
             {
-                _relaystatelist.RelayStates = _relaysettinglist.CurrentRelay.RelayStates;
+                _relaystatelist.RelayOperationDataList = _relaysettinglist.CurrentRelay.RelayOperationDatas;
             }
             else
             {
-                _relaystatelist.RelayStates = null;
+                _relaystatelist.RelayOperationDataList = null;
             }
-
             _relaystatelist.RefreshRelayStateList();
  
         }
@@ -303,28 +296,13 @@ namespace Configuring.UI
                 _userdefinedlist.PrjSettings = null;
             }
 
-            if (_relayIds.Count > 0)
+            if (_relays.Count > 0 && _relays != null)
             {
-                _userdefinedlist.RelaySettings = _relayIds;
-                if (_relayComSetting != null)
-                {
-
-                    _userdefinedlist.RelayComSetting = _relayComSetting;
-                }
-                else
-                {
-                    //_relayComSetting.ComNumber = cbComNumber.Text;
-                    //_relayComSetting.BaudRate = int.Parse(cbBaudrate.Text);
-                    //_relayComSetting.DataBits = int.Parse(cbDatabit.Text);
-                    //_relayComSetting.StopBits = int.Parse(cbStopbit.Text);
-                    //Parity _parity = (Parity)cbParity.SelectedIndex;
-                    //_relayComSetting.Parity = _parity;
-                }
+                _userdefinedlist.RelaySettings = _relays;
             }
             else
             {
                 _userdefinedlist.RelaySettings = null;
- 
             }
 
             _userdefinedlist.RefreshOprations();
@@ -541,7 +519,6 @@ namespace Configuring.UI
                 }
             config.Save(_timelineConfig);
         }
-
         private static void SaveIPSetting(XmlDocument config, UserOperation operation, XmlNode operationSetting)
         {
             NetworkSetting ns = operation.Setting as NetworkSetting;
@@ -626,69 +603,100 @@ namespace Configuring.UI
             config.Save(_prjConfigFile);
         }
 
+        string GetRelayStateType(RelayOperationType _state)
+        {
+            string ret = "吸合";
+            switch (_state)
+            {
+                case RelayOperationType.吸合:
+                    ret = "吸合";
+                    break;
+                case RelayOperationType.断开:
+                    ret = "断开";
+                    break;
+            }
+            return ret;
+        }
         //保存继电器数据
         private void SaveRelayConfig()
         {
             #region RelayConfig
-            //try
-            //{
-            //    XmlDocument config = new XmlDocument();
-            //    XmlNode root = config.CreateNode(XmlNodeType.Element, "RelayData", null);
-            //    config.AppendChild(root);
-            //    #region RelayData
-            //    XmlNode operationset = config.CreateNode(XmlNodeType.Element, "OperationSetting", null);
-            //    XmlNode comnumber = config.CreateNode(XmlNodeType.Element, "ComNumber", null);
-            //    comnumber.InnerText = cbComNumber.Text;
-            //    _relayComSetting.ComNumber = cbComNumber.Text;
-            //    XmlNode baudrate = config.CreateNode(XmlNodeType.Element, "BaudRate",null);
-            //    baudrate.InnerText = cbBaudrate.Text;
-            //    _relayComSetting.BaudRate = int.Parse(cbBaudrate.Text);
-            //    XmlNode databit = config.CreateNode(XmlNodeType.Element, "DataBit",null);
-            //    databit.InnerText = cbDatabit.Text;
-            //    _relayComSetting.DataBits = int.Parse(cbDatabit.Text);
-            //    XmlNode stopbit = config.CreateNode(XmlNodeType.Element,"StopBit",null);
-            //    stopbit.InnerText = cbStopbit.Text;
-            //    _relayComSetting.StopBits = int.Parse(cbStopbit.Text);
-            //    XmlNode parity = config.CreateNode(XmlNodeType.Element, "Parity",null);
-            //    Parity _parity =(Parity)cbParity.SelectedIndex;
-            //    _relayComSetting.Parity = _parity;
-            //    parity.InnerText =_parity.ToString();
-            //    operationset.AppendChild(comnumber);
-            //    operationset.AppendChild(baudrate);
-            //    operationset.AppendChild(databit);
-            //    operationset.AppendChild(stopbit);
-            //    operationset.AppendChild(parity);
-            //    root.AppendChild(operationset);
-            //    for (int i = 0; i < _relayIds.Count; i++)
-            //    {
-            //        RelaySetting _currentRelayId = _relayIds[i];
-            //        XmlNode approach = config.CreateNode(XmlNodeType.Element,"Approach",null);
-            //        XmlAttribute id = config.CreateAttribute("Id");
-            //        id.Value = _currentRelayId.Id.ToString();
-            //        approach.Attributes.Append(id);
-            //        for (int cout_mode=0; cout_mode < _currentRelayId.RelayStates.Count; cout_mode++)
-            //        {
-            //            UserDeviceState temprelayState = _currentRelayId.RelayStates[cout_mode];
-            //            XmlElement mode = config.CreateElement("Mode");
-            //            XmlAttribute _name = config.CreateAttribute("Name");
-            //            _name.Value = temprelayState.RelaysState.ToString();
-            //            XmlAttribute _data = config.CreateAttribute("Data");
-            //            _data.Value = temprelayState.Data;
-            //            mode.Attributes.Append(_name);
-            //            mode.Attributes.Append(_data);
-            //            approach.AppendChild(mode);
-            //        }
-            //        root.AppendChild(approach);
-            //    }
-            //    #endregion
-            //    config.Save(_relayConfigFile);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.ShowMessageBox("异常",ex.Message);
-            //}
-            #endregion
+            try
+            {
+                XmlDocument config = new XmlDocument();
+                XmlNode root = config.CreateNode(XmlNodeType.Element,"Root",null);
+                config.AppendChild(root);
+                for (int i = 0; i < _relays.Count;i++ )
+                {
+                    UserRelayArray _currentRelay = _relays[i];
+                    XmlNode relayModoule = config.CreateNode(XmlNodeType.Element, "Relay", null);
+                    XmlNode relayModouleName = config.CreateNode(XmlNodeType.Element, "Name", null);
+                    XmlNode relayCount = config.CreateNode(XmlNodeType.Element, "TotoalApproach",null); 
+                    relayModouleName.InnerText = _currentRelay.Name;
+                    relayCount.InnerText = _currentRelay.ApproachCout.ToString();
+                    relayModoule.AppendChild(relayModouleName);
+                    relayModoule.AppendChild(relayCount);
+                    XmlNode operationset = config.CreateNode(XmlNodeType.Element, "OperationSetting",null);
 
+                    XmlNode comnumber = config.CreateNode(XmlNodeType.Element, "ComNumber", null);
+                    comnumber.InnerText = _currentRelay.RelayCom.ComNumber;
+
+                    XmlNode baudrate = config.CreateNode(XmlNodeType.Element, "BaudRate", null);
+                    baudrate.InnerText = _currentRelay.RelayCom.BaudRate.ToString();
+
+                    XmlNode dataBit = config.CreateNode(XmlNodeType.Element, "DataBit", null);
+                    dataBit.InnerText = _currentRelay.RelayCom.DataBits.ToString();
+
+                    XmlNode stopBit = config.CreateNode(XmlNodeType.Element, "StopBit", null);
+                    stopBit.InnerText = _currentRelay.RelayCom.StopBits.ToString();
+
+                    XmlNode parity = config.CreateNode(XmlNodeType.Element, "Parity", null);
+                    parity.InnerText = _currentRelay.RelayCom.Parity.ToString();
+
+                    operationset.AppendChild(comnumber);
+                    operationset.AppendChild(baudrate);
+                    operationset.AppendChild(dataBit);
+                    operationset.AppendChild(stopBit);
+                    operationset.AppendChild(parity);
+
+                    relayModoule.AppendChild(operationset);
+
+                    XmlNode relaydata = config.CreateNode(XmlNodeType.Element, "RelayData", null);
+
+                    for (int relay_count = 0; relay_count < _currentRelay.RelayOperationDatas.Count; relay_count++)
+                    {
+                        UserRelaySetting _currentRelaySet = _currentRelay.RelayOperationDatas[relay_count];
+                        XmlNode approach = config.CreateNode(XmlNodeType.Element,"Approach",null);
+                        XmlAttribute id = config.CreateAttribute("Id");
+                        id.Value = _currentRelaySet.RelayId.ToString();
+                        approach.Attributes.Append(id);
+                        for (int _relayOperationData=0; _relayOperationData < 2; _relayOperationData++)
+                        {
+                            RelayOperationDataList _currentRelayData = _currentRelaySet.RelayOperationDatas[0];
+                            XmlElement mode = config.CreateElement("Mode");
+                            XmlAttribute _name = config.CreateAttribute("Name");
+                            _name.Value = GetRelayStateType((RelayOperationType)_relayOperationData);
+                            XmlAttribute _data = config.CreateAttribute("Data");
+                            _data.Value = _currentRelayData.GetOperationData((RelayOperationType)_relayOperationData);
+                            mode.Attributes.Append(_name);
+                            mode.Attributes.Append(_data);
+                            approach.AppendChild(mode);
+                        }
+                        relaydata.AppendChild(approach);
+                        relayModoule.AppendChild(relaydata);
+                    }
+                    root.AppendChild(relayModoule);
+                    config.Save(_relayConfigFile);
+                }
+               
+            }
+            catch(Exception ex)
+            {
+                Helper.ShowMessageBox("异常",ex.Message);
+            }
+
+        
+            #endregion
         }
 
         //保存自定义数据
@@ -886,7 +894,7 @@ namespace Configuring.UI
                 #endregion
 
                 #region LoadRelayData
-                //LoadRelayConfig();
+                LoadRelayConfig();
                 #endregion
 
                 #region LoadUserDefinedData
@@ -950,53 +958,55 @@ namespace Configuring.UI
         //加载继电器数据
         private void LoadRelayConfig()
         {
-            //try
-            //{
-            //    XmlDocument relayConfig = new XmlDocument();
-            //    relayConfig.Load(_relayConfigFile);
-            //    XmlNode root = relayConfig.SelectSingleNode("RelayData");
-            //    _relayIds.Clear();
-            //    _relayStates.Clear();
-            //    XmlNodeList _relayComms = root.SelectNodes("OperationSetting");
-            //    ComSetting _comsetting = new ComSetting();
-            //    foreach (XmlNode _relayCom in _relayComms)
-            //    {
-            //        cbComNumber.Text = _relayCom.SelectSingleNode("ComNumber").InnerText;
-            //        _comsetting.ComNumber = _relayCom.SelectSingleNode("ComNumber").InnerText;
-            //        cbBaudrate.Text = _relayCom.SelectSingleNode("BaudRate").InnerText;
-            //        _comsetting.BaudRate = int.Parse(_relayCom.SelectSingleNode("BaudRate").InnerText);
-            //        cbDatabit.Text = _relayCom.SelectSingleNode("DataBit").InnerText;
-            //        _comsetting.DataBits = int.Parse(_relayCom.SelectSingleNode("DataBit").InnerText);
-            //        cbStopbit.Text = _relayCom.SelectSingleNode("StopBit").InnerText;
-            //        _comsetting.DataBits = int.Parse(_relayCom.SelectSingleNode("StopBit").InnerText);
-            //        cbParity.SelectedIndex = (int)(Parity)Enum.Parse(typeof(Parity), _relayCom.SelectSingleNode("Parity").InnerText);
-            //        _comsetting.Parity = (Parity)Enum.Parse(typeof(Parity), _relayCom.SelectSingleNode("Parity").InnerText);
-            //        _relayComSetting = _comsetting;
-            //    }
+            try
+            {
+                XmlDocument relayConfig = new XmlDocument();
+                relayConfig.Load(_relayConfigFile);
+                XmlNode root = relayConfig.SelectSingleNode("Root");
 
-            //    XmlNodeList _relayDatas = root.SelectNodes("Approach");
-            //    foreach (XmlNode _relayData in _relayDatas)
-            //    {
-            //        int id = int.Parse(_relayData.Attributes["Id"].Value);
-            //        RelaySetting _relayid = new RelaySetting(id);
-            //        XmlNodeList temps = _relayData.SelectNodes("Mode");
+                XmlNodeList relays = root.SelectNodes("Relay");
+                _relays.Clear();
 
-            //        foreach (XmlNode temp in temps)
-            //        {
-            //            string _statename = temp.Attributes["Name"].Value;
-            //            string _statedata = temp.Attributes["Data"].Value;
-            //            RelayState _relayState = (RelayState)Enum.Parse(typeof(RelayState), _statename);
-            //            UserDeviceState uds = new UserDeviceState(_relayState, _statedata);
-            //            _relayid.RelayStates.Add(uds);
-            //        }
-            //        _relayIds.Add(_relayid);
-            //    }
-            //    _relaysettinglist.RefreshRelay();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.ShowMessageBox("异常", ex.Message);
-            //}
+                foreach (XmlNode relay in relays)
+                {
+                    string name = relay.SelectSingleNode("Name").InnerText;
+                    int _totoalApproachCount = int.Parse(relay.SelectSingleNode("TotoalApproach").InnerText);
+                    ComSetting cs = new ComSetting();
+                    XmlNode operationSetting = relay.SelectSingleNode("OperationSetting");
+                    cs.ComNumber = operationSetting.SelectSingleNode("ComNumber").InnerText;
+                    cs.BaudRate = int.Parse(operationSetting.SelectSingleNode("BaudRate").InnerText);
+                    cs.DataBits = int.Parse(operationSetting.SelectSingleNode("DataBit").InnerText);
+                    cs.StopBits = int.Parse(operationSetting.SelectSingleNode("StopBit").InnerText);
+                    cs.Parity = (Parity)Enum.Parse(typeof(Parity),operationSetting.SelectSingleNode("Parity").InnerText);
+
+                    UserRelayArray _userRelayModule = new UserRelayArray(name,cs,_totoalApproachCount);
+                    XmlNode _relaydata = relay.SelectSingleNode("RelayData");
+                    XmlNodeList _relayapproachs = _relaydata.SelectNodes("Approach");
+                    
+                    foreach (XmlNode _relayapproach in _relayapproachs)
+                    {
+                        int id = int.Parse(_relayapproach.Attributes["Id"].Value);
+                        UserRelaySetting _userRelaySetting = new UserRelaySetting(id, _totoalApproachCount);
+                        XmlNodeList temps = _relayapproach.SelectNodes("Mode");
+                        RelayOperationDataList _relayOperationList = new RelayOperationDataList();
+                        foreach (XmlNode temp in temps)
+                        {
+                            string _relayOperationType = temp.Attributes["Name"].Value;
+                            string _data = temp.Attributes["Data"].Value;
+                            _relayOperationList.SetOperationData((RelayOperationType)Enum.Parse(typeof(RelayOperationType),_relayOperationType),_data);
+                        }
+                        _userRelaySetting.AddRelayOperationData(_relayOperationList);
+                        _userRelayModule.AddRelayData(_userRelaySetting);
+                    }
+                    _relays.Add(_userRelayModule);
+                }
+                _relayModulelist.RefreshRelayList();
+                
+            }
+            catch
+            {
+                Helper.ShowMessageBox("提示","未找到继电器配置文件!");
+            }
         }
 
         //加载时间轴数据
@@ -1329,6 +1339,7 @@ namespace Configuring.UI
             SaveConfig();
             SavePrjData();
             SaveUserDefinedData();
+            SaveRelayConfig();
         }
 
         private void btnSaveSwitchConfig_Click(object sender, EventArgs e)
@@ -1602,13 +1613,7 @@ namespace Configuring.UI
                 Helper.ShowMessageBox("错误", ex.Message);
             }
         }
-
-        private void btnDowbload_ChangeUICues(object sender, UICuesEventArgs e)
-        {
-
-        }
-
-      
+  
 
     }
 

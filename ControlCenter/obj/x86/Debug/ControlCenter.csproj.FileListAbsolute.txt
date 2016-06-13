@@ -54,3 +54,5 @@ I:\非标项目\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.Proper
 I:\非标项目\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.csproj.GenerateResource.Cache
 I:\非标项目\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.exe
 I:\非标项目\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.pdb
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.exe
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.pdb
