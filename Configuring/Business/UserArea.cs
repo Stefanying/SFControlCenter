@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Configuring.Business
 {
-    public class Area
+    public class UserArea
     {
         string _name;
 
@@ -24,7 +24,7 @@ namespace Configuring.Business
         }
 
 
-        public Area(string name)
+        public UserArea(string name)
         {
             _name = name;
             _actions = new List<UserAction>();

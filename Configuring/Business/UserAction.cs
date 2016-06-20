@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Configuring.Business
 {
+    //功能点，一个功能可包含一个或者多个动作UserOperation
     public class UserAction
     {
         string _name;
@@ -14,6 +15,8 @@ namespace Configuring.Business
             get { return _name; }
             set { _name = value; }
         }
+
+        //功能编号，收到此编号执行此功能
         string _receiveCommand;
 
         public string ReceiveCommand

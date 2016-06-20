@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Configuring.Utility
 {
-    class Data
+    class ConfigData
     {
         public string GetIP()
         {
@@ -13,6 +13,14 @@ namespace Configuring.Utility
             string ip = iniFile.ReadString("Config", "IP", "127.0.0.1");
             _ip = ip;
             return _ip;
+        }
+
+        public int GetSerialPortCount()
+        {
+            SFLib.IniFile _iniFile = new SFLib.IniFile(_iniFilePath);
+            int t_count = _iniFile.ReadInteger("Config","SerialPortCount",14);
+            _serialPortCount = t_count;
+            return _serialPortCount;
         }
 
         public void SaveIP(string ip)
@@ -28,14 +36,15 @@ namespace Configuring.Utility
             }
         }
 
-        public static Data GetInstance()
+        public static ConfigData GetInstance()
         {
-            if (_instance == null) _instance = new Data();
+            if (_instance == null) _instance = new ConfigData();
             return _instance;
         }
 
-        static Data _instance;
+        static ConfigData _instance;
         string _ip = "192.168.1.1";
-        string _iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        int _serialPortCount = 14;
+        string _iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "ConfiguringCtrlSettings.ini";
     }
 }

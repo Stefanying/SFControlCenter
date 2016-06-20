@@ -169,7 +169,8 @@ namespace Configuring.UI.Controls
                 ris.Data_Off = _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开);
                 if (ris.ShowDialog() == DialogResult.OK)
                 {
-                    if (!CheckId(ris.Id) || ris.Data_On == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.吸合) || ris.Data_Off == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开))
+                    //if (!CheckId(ris.Id) || ris.Data_On == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.吸合) || ris.Data_Off == _currentRelay.RelayOperationDatas[0].GetOperationData(RelayOperationType.断开))
+                    if (CheckId(ris.Id))
                     {
                         _currentRelay.RelayId = ris.Id;
                         _currentRelay.RelayOperationDatas[0].SetOperationData(RelayOperationType.吸合, ris.Data_On);
@@ -185,35 +186,6 @@ namespace Configuring.UI.Controls
             
         }
 
-        private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_relays == null)
-            {
-                Helper.ShowMessageBox("提示","请选择对应的继电器模组！");
-                return;
-            }
-
-            RelayIdSetting ris = new RelayIdSetting();
-            ris.T_ApproachCount = t_ApproachCount;
-            if (ris.ShowDialog() == DialogResult.OK)
-            {
-                if (!CheckId(ris.Id))
-                {
-                    UserRelaySetting _userRelaySetting = new UserRelaySetting(ris.Id,t_ApproachCount);
-                    RelayOperationDataList _relayOperatinData = new RelayOperationDataList();
-                    _relayOperatinData.SetOperationData(RelayOperationType.吸合,ris.Data_On);
-                    _relayOperatinData.SetOperationData(RelayOperationType.断开,ris.Data_Off);
-                    _userRelaySetting.AddRelayOperationData(_relayOperatinData);
-                    AddRelayList(_userRelaySetting);
-                }
-                else
-                {
-                    Helper.ShowMessageBox("提示","存在相同的继电器号!");
-                }
-            }
-        }
-
-
         private bool CheckId(int id)
         {
             for (int i = 0; i < _relays.Count; i++)
@@ -227,19 +199,7 @@ namespace Configuring.UI.Controls
  
         }
 
-        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Helper.ShowMessageBox("确认", "确定删除？") == DialogResult.OK)
-            {
-                if (_relays != null && _relays.Count > 0 && _selectRowIndex != -1)
-                {
-                    UserRelaySetting _userRelaySet = _relays[_selectRowIndex];
-                    DeleteRelayList(_userRelaySet);
-                }
-            }
-
-        }
-
+  
         private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_currentRelay != null)

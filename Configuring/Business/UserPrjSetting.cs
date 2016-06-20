@@ -5,6 +5,15 @@ using System.Text;
 
 namespace Configuring.Business
 {
+
+    //投影机状态
+    public enum PrjOperationType
+    {
+        开,
+        关
+    }
+
+
   public  class UserPrjSetting
     {
         private string _name;
@@ -21,8 +30,8 @@ namespace Configuring.Business
             set { _pcs = value; }
         }
 
-        List<UserDeviceState> _deviceStates;
-        public List<UserDeviceState> DeviceStates
+        List<UserPrjOperation> _deviceStates;
+        public List<UserPrjOperation> DeviceStates
         {
             get { return _deviceStates; }
             set { _deviceStates = value; }
@@ -33,17 +42,42 @@ namespace Configuring.Business
         {
             _name = name;
             _pcs = pcs;
-            _deviceStates = new List<UserDeviceState>();
+            _deviceStates = new List<UserPrjOperation>();
         }
 
-        public void AddPrjSetting(UserDeviceState _uds)
+        public void AddPrjSetting(UserPrjOperation _uds)
         {
             _deviceStates.Add(_uds);
         }
 
-        public void Remove(UserDeviceState _uds)
+        public void Remove(UserPrjOperation _uds)
         {
             _deviceStates.Remove(_uds);
+        }
+    }
+
+   public class UserPrjOperation
+    {
+
+        PrjOperationType _prjOperationType;
+        public PrjOperationType PrjOperationType
+        {
+            get { return _prjOperationType; }
+            set { _prjOperationType = value; }
+        }
+
+       //数据
+        string _data;
+        public string Data
+        {
+            get { return _data; }
+            set { _data = value; }
+        }
+
+        public UserPrjOperation(PrjOperationType p_type, string data)
+        {
+            _prjOperationType = p_type;
+            _data = data;
         }
     }
 }

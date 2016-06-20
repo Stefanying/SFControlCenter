@@ -42,16 +42,16 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbName.Location = new System.Drawing.Point(25, 71);
+            this.lbName.Location = new System.Drawing.Point(45, 71);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(110, 16);
+            this.lbName.Size = new System.Drawing.Size(144, 16);
             this.lbName.TabIndex = 3;
-            this.lbName.Text = "继电器名称：";
+            this.lbName.Text = "继电器模块名称：";
             // 
             // tbName
             // 
             this.tbName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbName.Location = new System.Drawing.Point(141, 72);
+            this.tbName.Location = new System.Drawing.Point(190, 68);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(163, 26);
             this.tbName.TabIndex = 4;
@@ -60,7 +60,7 @@
             // 
             this.lbCount.AutoSize = true;
             this.lbCount.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbCount.Location = new System.Drawing.Point(25, 138);
+            this.lbCount.Location = new System.Drawing.Point(45, 119);
             this.lbCount.Name = "lbCount";
             this.lbCount.Size = new System.Drawing.Size(110, 16);
             this.lbCount.TabIndex = 5;
@@ -69,7 +69,7 @@
             // tbRelayCount
             // 
             this.tbRelayCount.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbRelayCount.Location = new System.Drawing.Point(141, 138);
+            this.tbRelayCount.Location = new System.Drawing.Point(190, 119);
             this.tbRelayCount.Name = "tbRelayCount";
             this.tbRelayCount.Size = new System.Drawing.Size(103, 26);
             this.tbRelayCount.TabIndex = 6;
@@ -79,7 +79,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(25, 213);
+            this.label1.Location = new System.Drawing.Point(45, 185);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 16);
             this.label1.TabIndex = 7;
@@ -88,7 +88,7 @@
             // btnSet
             // 
             this.btnSet.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSet.Location = new System.Drawing.Point(141, 206);
+            this.btnSet.Location = new System.Drawing.Point(190, 177);
             this.btnSet.Name = "btnSet";
             this.btnSet.Size = new System.Drawing.Size(89, 33);
             this.btnSet.TabIndex = 8;
@@ -99,7 +99,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCancel.Location = new System.Drawing.Point(28, 293);
+            this.btnCancel.Location = new System.Drawing.Point(153, 259);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(89, 33);
             this.btnCancel.TabIndex = 9;
@@ -110,7 +110,7 @@
             // btnOk
             // 
             this.btnOk.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnOk.Location = new System.Drawing.Point(243, 293);
+            this.btnOk.Location = new System.Drawing.Point(280, 259);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(89, 33);
             this.btnOk.TabIndex = 10;
@@ -122,7 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 368);
+            this.ClientSize = new System.Drawing.Size(396, 313);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSet);

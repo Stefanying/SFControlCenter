@@ -32,8 +32,8 @@ namespace Configuring.UI.Controls
         private List<string> UserDefinedName = new List<string>();
 
         //自定义命令
-        private List<DefinedName> _userDefinedNameList;
-        public List<DefinedName> UserDefinedNameList
+        private List<UserDefinedOperation> _userDefinedNameList;
+        public List<UserDefinedOperation> UserDefinedNameList
         {
             get { return _userDefinedNameList; }
             set { _userDefinedNameList = value; }
@@ -259,6 +259,12 @@ namespace Configuring.UI.Controls
                 return;
             }
 
+            if (_prjSettings == null)
+            {
+                Helper.ShowMessageBox("提示", "投影机数据未添加!");
+                return;
+            }
+
             PrjSwitch _prj = new PrjSwitch(_prjSettings);
             if (_prj.ShowDialog() == DialogResult.OK)
             {
@@ -274,6 +280,12 @@ namespace Configuring.UI.Controls
             if (_opreations == null)
             {
                 Helper.ShowMessageBox("提示", "请选择对应操作项或时间点！");
+                return;
+            }
+
+            if (_relaySettings == null)
+            {
+                Helper.ShowMessageBox("提示","继电器数据未添加!");
                 return;
             }
 
@@ -300,6 +312,11 @@ namespace Configuring.UI.Controls
             {
                 Helper.ShowMessageBox("提示", "请选择对应操作项或时间点！");
                 return;
+            }
+
+            if (_relaySettings == null)
+            {
+                Helper.ShowMessageBox("提示", "继电器数据未添加!");
             }
 
             RelaySwatch _rwRelaySwatch = new RelaySwatch(_relaySettings);

@@ -68,7 +68,7 @@ namespace Configuring.Server
                }
                return _relays;
            }
-           catch (Exception ex)
+           catch
            {
                Helper.ShowMessageBox("提示","未找到继电器配置文件");
                return null;
@@ -78,83 +78,83 @@ namespace Configuring.Server
        //保存继电器配置文件
        public void SaveRelayConfig(List<UserRelayArray> p_relays)
        {
-           #region RelayConfig
-           try
+           if (p_relays != null && p_relays.Count > 0)
            {
-               XmlDocument config = new XmlDocument();
-               XmlNode root = config.CreateNode(XmlNodeType.Element, "Root", null);
-               config.AppendChild(root);
-               for (int i = 0; i < p_relays.Count; i++)
+               #region RelayConfig
+               try
                {
-                   UserRelayArray _currentRelay = _relays[i];
-                   XmlNode relayModoule = config.CreateNode(XmlNodeType.Element, "Relay", null);
-                   XmlNode relayModouleName = config.CreateNode(XmlNodeType.Element, "Name", null);
-                   XmlNode relayCount = config.CreateNode(XmlNodeType.Element, "TotoalApproach", null);
-                   relayModouleName.InnerText = _currentRelay.Name;
-                   relayCount.InnerText = _currentRelay.ApproachCout.ToString();
-                   relayModoule.AppendChild(relayModouleName);
-                   relayModoule.AppendChild(relayCount);
-                   XmlNode operationset = config.CreateNode(XmlNodeType.Element, "OperationSetting", null);
-
-                   XmlNode comnumber = config.CreateNode(XmlNodeType.Element, "ComNumber", null);
-                   comnumber.InnerText = _currentRelay.RelayCom.ComNumber;
-
-                   XmlNode baudrate = config.CreateNode(XmlNodeType.Element, "BaudRate", null);
-                   baudrate.InnerText = _currentRelay.RelayCom.BaudRate.ToString();
-
-                   XmlNode dataBit = config.CreateNode(XmlNodeType.Element, "DataBit", null);
-                   dataBit.InnerText = _currentRelay.RelayCom.DataBits.ToString();
-
-                   XmlNode stopBit = config.CreateNode(XmlNodeType.Element, "StopBit", null);
-                   stopBit.InnerText = _currentRelay.RelayCom.StopBits.ToString();
-
-                   XmlNode parity = config.CreateNode(XmlNodeType.Element, "Parity", null);
-                   parity.InnerText = _currentRelay.RelayCom.Parity.ToString();
-
-                   operationset.AppendChild(comnumber);
-                   operationset.AppendChild(baudrate);
-                   operationset.AppendChild(dataBit);
-                   operationset.AppendChild(stopBit);
-                   operationset.AppendChild(parity);
-
-                   relayModoule.AppendChild(operationset);
-
-                   XmlNode relaydata = config.CreateNode(XmlNodeType.Element, "RelayData", null);
-
-                   for (int relay_count = 0; relay_count < _currentRelay.RelayOperationDatas.Count; relay_count++)
+                   XmlDocument config = new XmlDocument();
+                   XmlNode root = config.CreateNode(XmlNodeType.Element, "Root", null);
+                   config.AppendChild(root);
+                   for (int i = 0; i < p_relays.Count; i++)
                    {
-                       UserRelaySetting _currentRelaySet = _currentRelay.RelayOperationDatas[relay_count];
-                       XmlNode approach = config.CreateNode(XmlNodeType.Element, "Approach", null);
-                       XmlAttribute id = config.CreateAttribute("Id");
-                       id.Value = _currentRelaySet.RelayId.ToString();
-                       approach.Attributes.Append(id);
-                       for (int _relayOperationData = 0; _relayOperationData < 2; _relayOperationData++)
+                       UserRelayArray _currentRelay = p_relays[i];
+                       XmlNode relayModoule = config.CreateNode(XmlNodeType.Element, "Relay", null);
+                       XmlNode relayModouleName = config.CreateNode(XmlNodeType.Element, "Name", null);
+                       XmlNode relayCount = config.CreateNode(XmlNodeType.Element, "TotoalApproach", null);
+                       relayModouleName.InnerText = _currentRelay.Name;
+                       relayCount.InnerText = _currentRelay.ApproachCout.ToString();
+                       relayModoule.AppendChild(relayModouleName);
+                       relayModoule.AppendChild(relayCount);
+                       XmlNode operationset = config.CreateNode(XmlNodeType.Element, "OperationSetting", null);
+
+                       XmlNode comnumber = config.CreateNode(XmlNodeType.Element, "ComNumber", null);
+                       comnumber.InnerText = _currentRelay.RelayCom.ComNumber;
+
+                       XmlNode baudrate = config.CreateNode(XmlNodeType.Element, "BaudRate", null);
+                       baudrate.InnerText = _currentRelay.RelayCom.BaudRate.ToString();
+
+                       XmlNode dataBit = config.CreateNode(XmlNodeType.Element, "DataBit", null);
+                       dataBit.InnerText = _currentRelay.RelayCom.DataBits.ToString();
+
+                       XmlNode stopBit = config.CreateNode(XmlNodeType.Element, "StopBit", null);
+                       stopBit.InnerText = _currentRelay.RelayCom.StopBits.ToString();
+
+                       XmlNode parity = config.CreateNode(XmlNodeType.Element, "Parity", null);
+                       parity.InnerText = _currentRelay.RelayCom.Parity.ToString();
+
+                       operationset.AppendChild(comnumber);
+                       operationset.AppendChild(baudrate);
+                       operationset.AppendChild(dataBit);
+                       operationset.AppendChild(stopBit);
+                       operationset.AppendChild(parity);
+
+                       relayModoule.AppendChild(operationset);
+
+                       XmlNode relaydata = config.CreateNode(XmlNodeType.Element, "RelayData", null);
+
+                       for (int relay_count = 0; relay_count < _currentRelay.RelayOperationDatas.Count; relay_count++)
                        {
-                           RelayOperationDataList _currentRelayData = _currentRelaySet.RelayOperationDatas[0];
-                           XmlElement mode = config.CreateElement("Mode");
-                           XmlAttribute _name = config.CreateAttribute("Name");
-                           _name.Value = GetRelayStateType((RelayOperationType)_relayOperationData);
-                           XmlAttribute _data = config.CreateAttribute("Data");
-                           _data.Value = _currentRelayData.GetOperationData((RelayOperationType)_relayOperationData);
-                           mode.Attributes.Append(_name);
-                           mode.Attributes.Append(_data);
-                           approach.AppendChild(mode);
+                           UserRelaySetting _currentRelaySet = _currentRelay.RelayOperationDatas[relay_count];
+                           XmlNode approach = config.CreateNode(XmlNodeType.Element, "Approach", null);
+                           XmlAttribute id = config.CreateAttribute("Id");
+                           id.Value = _currentRelaySet.RelayId.ToString();
+                           approach.Attributes.Append(id);
+                           for (int _relayOperationData = 0; _relayOperationData < 2; _relayOperationData++)
+                           {
+                               RelayOperationDataList _currentRelayData = _currentRelaySet.RelayOperationDatas[0];
+                               XmlElement mode = config.CreateElement("Mode");
+                               XmlAttribute _name = config.CreateAttribute("Name");
+                               _name.Value = GetRelayStateType((RelayOperationType)_relayOperationData);
+                               XmlAttribute _data = config.CreateAttribute("Data");
+                               _data.Value = _currentRelayData.GetOperationData((RelayOperationType)_relayOperationData);
+                               mode.Attributes.Append(_name);
+                               mode.Attributes.Append(_data);
+                               approach.AppendChild(mode);
+                           }
+                           relaydata.AppendChild(approach);
+                           relayModoule.AppendChild(relaydata);
                        }
-                       relaydata.AppendChild(approach);
-                       relayModoule.AppendChild(relaydata);
+                       root.AppendChild(relayModoule);
+                       config.Save(_relayConfigFile);
                    }
-                   root.AppendChild(relayModoule);
-                   config.Save(_relayConfigFile);
+               }
+               catch (Exception ex)
+               {
+                   Helper.ShowMessageBox("异常", ex.Message);
                }
            }
-           catch (Exception ex)
-           {
-               Helper.ShowMessageBox("异常", ex.Message);
-           }
-
-
            #endregion
- 
        }
 
        string GetRelayStateType(RelayOperationType _state)

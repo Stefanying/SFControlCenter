@@ -22,70 +22,73 @@ namespace Configuring.Server
        }
 
        //保存自定义配置
-       public void SaveUserDefinedData(List<DefinedName> p_userdefineNames)
+       public void SaveUserDefinedData(List<UserDefinedOperation> p_userdefineNames)
        {
-           XmlDocument config = new XmlDocument();
-           XmlNode root = config.CreateNode(XmlNodeType.Element, "Root", null);
-           config.AppendChild(root);
-           for (int i = 0; i < _userdefineNames.Count; i++)
+           if (p_userdefineNames != null && p_userdefineNames.Count > 0)
            {
-               DefinedName _currentName = _userdefineNames[i];
-               XmlNode action = config.CreateNode(XmlNodeType.Element, "Action", null);
-               XmlAttribute _name = config.CreateAttribute("Name");
-               _name.Value = _currentName.Name;
-               action.Attributes.Append(_name);
-               for (int _operationcout = 0; _operationcout < _currentName.Operations.Count; _operationcout++)
+               XmlDocument config = new XmlDocument();
+               XmlNode root = config.CreateNode(XmlNodeType.Element, "Root", null);
+               config.AppendChild(root);
+               for (int i = 0; i < p_userdefineNames.Count; i++)
                {
-                   UserOperation operation = _currentName.Operations[_operationcout];
-                   XmlNode operationNode = config.CreateNode(XmlNodeType.Element, "Operation", null);
-                   XmlNode operationName = config.CreateNode(XmlNodeType.Element, "OperationName", null);
-                   operationName.InnerText = operation.Name;
-
-                   XmlNode operationType = config.CreateNode(XmlNodeType.Element, "OperationType", null);
-                   operationType.InnerText = operation.OpreationType.ToString();
-
-                   XmlNode operationDataType = config.CreateNode(XmlNodeType.Element, "OperationDataType", null);
-                   operationDataType.InnerText = operation.DataType.ToString();
-
-                   XmlNode operationData = config.CreateNode(XmlNodeType.Element, "OperationData", null);
-                   if (operation.DataType == DataType.Hex)
+                   UserDefinedOperation _currentName = p_userdefineNames[i];
+                   XmlNode action = config.CreateNode(XmlNodeType.Element, "Action", null);
+                   XmlAttribute _name = config.CreateAttribute("Name");
+                   _name.Value = _currentName.Name;
+                   action.Attributes.Append(_name);
+                   for (int _operationcout = 0; _operationcout < _currentName.Operations.Count; _operationcout++)
                    {
-                       operationData.InnerText = operation.Data.Replace(" ", "").Trim();
-                   }
-                   else
-                   {
-                       operationData.InnerText = operation.Data;
-                   }
+                       UserOperation operation = _currentName.Operations[_operationcout];
+                       XmlNode operationNode = config.CreateNode(XmlNodeType.Element, "Operation", null);
+                       XmlNode operationName = config.CreateNode(XmlNodeType.Element, "OperationName", null);
+                       operationName.InnerText = operation.Name;
 
-                   XmlNode operationTime = config.CreateNode(XmlNodeType.Element, "OperationTime", null);
-                   operationTime.InnerText = operation.DelayTime.ToString();
+                       XmlNode operationType = config.CreateNode(XmlNodeType.Element, "OperationType", null);
+                       operationType.InnerText = operation.OpreationType.ToString();
 
-                   XmlNode operationSetting = config.CreateNode(XmlNodeType.Element, "OperationSetting", null);
-                   if (operation.Setting as ComSetting != null)
-                   {
-                       SaveComSetting(config, operation, operationSetting);
-                   }
-                   else if (operation.Setting as NetworkSetting != null)
-                   {
-                       SaveIPSetting(config, operation, operationSetting);
-                   }
+                       XmlNode operationDataType = config.CreateNode(XmlNodeType.Element, "OperationDataType", null);
+                       operationDataType.InnerText = operation.DataType.ToString();
 
-                   operationNode.AppendChild(operationName);
-                   operationNode.AppendChild(operationType);
-                   operationNode.AppendChild(operationDataType);
-                   operationNode.AppendChild(operationData);
-                   operationNode.AppendChild(operationTime);
-                   operationNode.AppendChild(operationSetting);
-                   action.AppendChild(operationNode);
+                       XmlNode operationData = config.CreateNode(XmlNodeType.Element, "OperationData", null);
+                       if (operation.DataType == DataType.Hex)
+                       {
+                           operationData.InnerText = operation.Data.Replace(" ", "").Trim();
+                       }
+                       else
+                       {
+                           operationData.InnerText = operation.Data;
+                       }
+
+                       XmlNode operationTime = config.CreateNode(XmlNodeType.Element, "OperationTime", null);
+                       operationTime.InnerText = operation.DelayTime.ToString();
+
+                       XmlNode operationSetting = config.CreateNode(XmlNodeType.Element, "OperationSetting", null);
+                       if (operation.Setting as ComSetting != null)
+                       {
+                           SaveComSetting(config, operation, operationSetting);
+                       }
+                       else if (operation.Setting as NetworkSetting != null)
+                       {
+                           SaveIPSetting(config, operation, operationSetting);
+                       }
+
+                       operationNode.AppendChild(operationName);
+                       operationNode.AppendChild(operationType);
+                       operationNode.AppendChild(operationDataType);
+                       operationNode.AppendChild(operationData);
+                       operationNode.AppendChild(operationTime);
+                       operationNode.AppendChild(operationSetting);
+                       action.AppendChild(operationNode);
+                   }
+                   root.AppendChild(action);
                }
-               root.AppendChild(action);
-           }
 
-           config.Save(_userdefinedConfigFile);
+               config.Save(_userdefinedConfigFile);
+           }
  
        }
 
-       public List<DefinedName> LoadUserDefinedData()
+       public List<UserDefinedOperation> LoadUserDefinedData()
        {
            try
            {
@@ -98,7 +101,7 @@ namespace Configuring.Server
                foreach (XmlNode action in actions)
                {
                    string _actionName = action.Attributes["Name"].Value;
-                   DefinedName _deName = new DefinedName(_actionName);
+                   UserDefinedOperation _deName = new UserDefinedOperation(_actionName);
                    XmlNodeList operations = action.SelectNodes("Operation");
                    foreach (XmlNode operation in operations)
                    {
@@ -185,7 +188,7 @@ namespace Configuring.Server
            operationSetting.AppendChild(port);
        }
 
-       List<DefinedName> _userdefineNames = new List<DefinedName>();
+       List<UserDefinedOperation> _userdefineNames = new List<UserDefinedOperation>();
        static CustomConfigServer _instance;
        string _userdefinedConfigFile = AppDomain.CurrentDomain.BaseDirectory + "CustomData.xml";
     }

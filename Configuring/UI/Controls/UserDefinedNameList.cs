@@ -14,15 +14,15 @@ namespace Configuring.UI.Controls
     {
         public event EventHandler OnCurrentUserDefinedChanged;
 
-        private List<DefinedName> _definedNames;
-        public List<DefinedName> DefinedNames
+        private List<UserDefinedOperation> _definedNames;
+        public List<UserDefinedOperation> DefinedNames
         {
             get { return _definedNames; }
             set { _definedNames = value; }
         }
 
-        private DefinedName _currentUserDefinedName;
-        public DefinedName CurrentUserDefinedName
+        private UserDefinedOperation _currentUserDefinedName;
+        public UserDefinedOperation CurrentUserDefinedName
         {
             get { return _currentUserDefinedName; }
             set { _currentUserDefinedName = value; }
@@ -48,7 +48,7 @@ namespace Configuring.UI.Controls
         }
 
         //添加命令
-        public void AddCommand(DefinedName area)
+        public void AddCommand(UserDefinedOperation area)
         {
             lock (_lock)
             {
@@ -65,7 +65,7 @@ namespace Configuring.UI.Controls
             }
         }
 
-        public void DeleteArea(DefinedName area)
+        public void DeleteArea(UserDefinedOperation area)
         {
             lock (_lock)
             {
@@ -85,7 +85,7 @@ namespace Configuring.UI.Controls
 
             if (_definedNames != null)
             {
-                foreach (DefinedName area in _definedNames)
+                foreach (UserDefinedOperation area in _definedNames)
                 {
                     dbAreaList.Rows.Add(area.Name);
                 }
@@ -137,16 +137,26 @@ namespace Configuring.UI.Controls
             _userActionName.LbName = "命令名称";
             if (_userActionName.ShowDialog() == DialogResult.OK)
             {
-                foreach (DefinedName area in _definedNames)
+                if (_definedNames != null)
                 {
-                    if (area.Name == _userActionName.AreaName)
+                    foreach (UserDefinedOperation area in _definedNames)
                     {
-                        Helper.ShowMessageBox("提示", "已存在相同名称！");
-                        return;
+                        if (area.Name == _userActionName.AreaName)
+                        {
+                            Helper.ShowMessageBox("提示", "已存在相同名称！");
+                            return;
+                        }
                     }
+                    UserDefinedOperation command = new UserDefinedOperation(_userActionName.AreaName);
+                    AddCommand(command);
                 }
-                DefinedName command = new DefinedName(_userActionName.AreaName);
-                AddCommand(command);
+                else
+                {
+                    UserDefinedOperation command = new UserDefinedOperation(_userActionName.AreaName);
+                    _definedNames = new List<UserDefinedOperation>();
+                    _definedNames.Add(command);
+                    RefreshAreaList();
+                }
             } 
         }
 
@@ -156,7 +166,7 @@ namespace Configuring.UI.Controls
             {
                 if (_definedNames != null && _definedNames.Count > 0 && _selectRowIndex != -1)
                 {
-                    DefinedName command = _definedNames[_selectRowIndex];
+                    UserDefinedOperation command = _definedNames[_selectRowIndex];
                     DeleteArea(command);
                 }
             }
@@ -171,7 +181,7 @@ namespace Configuring.UI.Controls
                 _userActionName.LbName = "命令名称";
                 if (_userActionName.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (DefinedName area in _definedNames)
+                    foreach (UserDefinedOperation area in _definedNames)
                     {
                         if (area.Name == _userActionName.AreaName && area != _currentUserDefinedName)
                         {

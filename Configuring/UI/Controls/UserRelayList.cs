@@ -178,26 +178,45 @@ namespace Configuring.UI.Controls
             RelayModuleSetting relayNameSetting = new RelayModuleSetting();
             if (relayNameSetting.ShowDialog() == DialogResult.OK)
             {
-                foreach (UserRelayArray relay in _relayModules)
+                if (_relayModules != null)
                 {
-                    if (relayNameSetting.Name == relay.Name)
+                    foreach (UserRelayArray relay in _relayModules)
                     {
-                        Helper.ShowMessageBox("提示", "已存在相同的名称！");
-                        return;
+                        if (relayNameSetting.Name == relay.Name)
+                        {
+                            Helper.ShowMessageBox("提示", "已存在相同的名称！");
+                            return;
+                        }
                     }
-                }
 
-                UserRelayArray _userelay = new UserRelayArray(relayNameSetting.RelayName, relayNameSetting.RelayCom, relayNameSetting.RelayCount);
-                for (int i = 1; i <= relayNameSetting.RelayCount; i++)
-                {
-                    UserRelaySetting _userRelaySetting = new UserRelaySetting(i, relayNameSetting.RelayCount);
-                    RelayOperationDataList _relayOperation = new RelayOperationDataList();
-                    _relayOperation.SetOperationData(RelayOperationType.吸合,"");
-                    _relayOperation.SetOperationData(RelayOperationType.断开,"");
-                    _userRelaySetting.AddRelayOperationData(_relayOperation);
-                    _userelay.AddRelayData(_userRelaySetting);
+                    UserRelayArray _userelay = new UserRelayArray(relayNameSetting.RelayName, relayNameSetting.RelayCom, relayNameSetting.RelayCount);
+                    for (int i = 1; i <= relayNameSetting.RelayCount; i++)
+                    {
+                        UserRelaySetting _userRelaySetting = new UserRelaySetting(i, relayNameSetting.RelayCount);
+                        RelayOperationDataList _relayOperation = new RelayOperationDataList();
+                        _relayOperation.SetOperationData(RelayOperationType.吸合, "");
+                        _relayOperation.SetOperationData(RelayOperationType.断开, "");
+                        _userRelaySetting.AddRelayOperationData(_relayOperation);
+                        _userelay.AddRelayData(_userRelaySetting);
+                    }
+                    AddCommand(_userelay);
                 }
-                AddCommand(_userelay);
+                else
+                {
+                    UserRelayArray _userelay = new UserRelayArray(relayNameSetting.RelayName, relayNameSetting.RelayCom, relayNameSetting.RelayCount);
+                    for (int i = 1; i <= relayNameSetting.RelayCount; i++)
+                    {
+                        UserRelaySetting _userRelaySetting = new UserRelaySetting(i, relayNameSetting.RelayCount);
+                        RelayOperationDataList _relayOperation = new RelayOperationDataList();
+                        _relayOperation.SetOperationData(RelayOperationType.吸合, "");
+                        _relayOperation.SetOperationData(RelayOperationType.断开, "");
+                        _userRelaySetting.AddRelayOperationData(_relayOperation);
+                        _userelay.AddRelayData(_userRelaySetting);
+                    }
+                    _relayModules = new List<UserRelayArray>();
+                    _relayModules.Add(_userelay);
+                    RefreshRelayList();
+                }
             }
 
         }

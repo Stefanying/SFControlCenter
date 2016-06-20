@@ -161,30 +161,15 @@
             this.label7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.Location = new System.Drawing.Point(337, 324);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 16);
+            this.label7.Size = new System.Drawing.Size(60, 16);
             this.label7.TabIndex = 20;
-            this.label7.Text = "(毫)";
+            this.label7.Text = "(毫秒)";
             // 
             // cbSerialPort
             // 
             this.cbSerialPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSerialPort.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold);
             this.cbSerialPort.FormattingEnabled = true;
-            this.cbSerialPort.Items.AddRange(new object[] {
-            "com1",
-            "com2",
-            "com3",
-            "com4",
-            "com5",
-            "com6",
-            "com7",
-            "com8",
-            "com9",
-            "com10",
-            "com11",
-            "com12",
-            "com13",
-            "com14"});
             this.cbSerialPort.Location = new System.Drawing.Point(185, 236);
             this.cbSerialPort.Name = "cbSerialPort";
             this.cbSerialPort.Size = new System.Drawing.Size(164, 24);
@@ -209,7 +194,7 @@
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.label1);
             this.Name = "PrjSwitch";
-            this.Text = "PrjSwitch";
+            this.Text = "";
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.tbName, 0);
             this.Controls.SetChildIndex(this.label2, 0);

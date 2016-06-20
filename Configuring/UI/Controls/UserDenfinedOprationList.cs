@@ -183,6 +183,12 @@ namespace Configuring.UI.Controls
                 return;
             }
 
+            if (_prjSettings == null)
+            {
+                Helper.ShowMessageBox("提示", "投影机数据未添加!");
+                return;
+            }
+
             PrjSwitch _prj = new PrjSwitch(_prjSettings);
             if (_prj.ShowDialog() == DialogResult.OK)
             {
@@ -200,6 +206,12 @@ namespace Configuring.UI.Controls
                 Helper.ShowMessageBox("提示", "请选择对应操作项或时间点！");
                 return;
             }
+
+            if (_relaySettings == null)
+            {
+                Helper.ShowMessageBox("提示", "继电器数据未添加!");
+            }
+         
 
             PcSwatch _pcSwitch = new PcSwatch(_relaySettings);
             if (_pcSwitch.ShowDialog() == DialogResult.OK)
@@ -224,6 +236,11 @@ namespace Configuring.UI.Controls
             {
                 Helper.ShowMessageBox("提示", "请选择对应操作项或时间点！");
                 return;
+            }
+
+            if (_relaySettings == null)
+            {
+                Helper.ShowMessageBox("提示", "继电器数据未添加!");
             }
 
             RelaySwatch _rwRelaySwatch = new RelaySwatch(_relaySettings);

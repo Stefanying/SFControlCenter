@@ -32,7 +32,7 @@ namespace Configuring.UI.Controls
         public string OperationTwoName
         {
             get { return _operationTwoName; }
-            set { _operationTwoName = value; tbName2.Text = value; }
+            set { _operationTwoName = value; }
         }
 
 
@@ -157,8 +157,8 @@ namespace Configuring.UI.Controls
 
         private bool CheckTime(int time)
         {
-            bool ret = time < 7200000;
-            if (!ret) Helper.ShowMessageBox("时间超时", "请确保时间小于12m");
+            bool ret = (time < 7200000&&time>1000);
+            if (!ret) Helper.ShowMessageBox("时间超时", "请确保时间小于72m且大于1m");
             return ret;
         }
 
@@ -211,15 +211,15 @@ namespace Configuring.UI.Controls
                     return;
                 }
 
-                if (tbName.Text == "" && tbName2.Text == "" ||tbName.Text == "电脑序号+开关机+步骤一"||tbName2.Text == "电脑序号+开关机+步骤二")
+                if (tbName.Text == "")
                 {
-                    _operationNameList.Add("电脑" + cbId.SelectedItem.ToString() + "步骤一");
-                    _operationNameList.Add("电脑" + cbId.SelectedItem.ToString() + "步骤二");
+                    _operationNameList.Add("电脑" + cbId.SelectedItem.ToString() + "开关机"+"步骤一");
+                    _operationNameList.Add("电脑" + cbId.SelectedItem.ToString() + "开关机" + "步骤二");
                 }
                 else
                 {
-                    _operationNameList.Add(tbName.Text);
-                    _operationNameList.Add(tbName2.Text);
+                    _operationNameList.Add(tbName.Text+"开关机步骤一");
+                    _operationNameList.Add(tbName.Text+"开关机步骤二");
                 }
                 _delayTime = int.Parse(tbTime.Text);
 

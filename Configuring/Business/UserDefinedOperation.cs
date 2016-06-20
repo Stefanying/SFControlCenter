@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Configuring.Business
 {
-   public  class DefinedName
+    //自定义命令操作
+   public  class UserDefinedOperation
     {
         string _name;
 
@@ -23,7 +24,7 @@ namespace Configuring.Business
             set { _operations = value; }
         }
 
-        public DefinedName(string name)
+        public UserDefinedOperation(string name)
         {
             _name = name;
             _operations = new List<UserOperation>();

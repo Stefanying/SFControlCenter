@@ -127,6 +127,62 @@
           <Port>3000</Port>
         </OperationSetting>
       </Operation>
+      <Operation>
+        <OperationName>电脑1开关机步骤一</OperationName>
+        <OperationType>Com</OperationType>
+        <OperationDataType>Hex</OperationDataType>
+        <OperationData>560113000001016C</OperationData>
+        <OperationTime>2000</OperationTime>
+        <OperationSetting>
+          <ComNumber>com1</ComNumber>
+          <BaudRate>19200</BaudRate>
+          <DataBit>8</DataBit>
+          <StopBit>1</StopBit>
+          <Parity>None</Parity>
+        </OperationSetting>
+      </Operation>
+      <Operation>
+        <OperationName>电脑1开关机步骤二</OperationName>
+        <OperationType>Com</OperationType>
+        <OperationDataType>Hex</OperationDataType>
+        <OperationData>560113000001006B</OperationData>
+        <OperationTime>2000</OperationTime>
+        <OperationSetting>
+          <ComNumber>com1</ComNumber>
+          <BaudRate>19200</BaudRate>
+          <DataBit>8</DataBit>
+          <StopBit>1</StopBit>
+          <Parity>None</Parity>
+        </OperationSetting>
+      </Operation>
+      <Operation>
+        <OperationName>电子翻书电脑步骤一</OperationName>
+        <OperationType>Com</OperationType>
+        <OperationDataType>Hex</OperationDataType>
+        <OperationData>560113000001016C</OperationData>
+        <OperationTime>2000</OperationTime>
+        <OperationSetting>
+          <ComNumber>com1</ComNumber>
+          <BaudRate>19200</BaudRate>
+          <DataBit>8</DataBit>
+          <StopBit>1</StopBit>
+          <Parity>None</Parity>
+        </OperationSetting>
+      </Operation>
+      <Operation>
+        <OperationName>电子翻书电脑步骤二</OperationName>
+        <OperationType>Com</OperationType>
+        <OperationDataType>Hex</OperationDataType>
+        <OperationData>560113000001006B</OperationData>
+        <OperationTime>2000</OperationTime>
+        <OperationSetting>
+          <ComNumber>com1</ComNumber>
+          <BaudRate>19200</BaudRate>
+          <DataBit>8</DataBit>
+          <StopBit>1</StopBit>
+          <Parity>None</Parity>
+        </OperationSetting>
+      </Operation>
     </Action>
   </Area>
   <TimeShaft>

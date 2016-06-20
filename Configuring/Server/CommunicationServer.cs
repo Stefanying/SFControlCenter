@@ -29,7 +29,7 @@ namespace Configuring.Server
            {
                _hostname = p_ip;
                _client.Connect(IPAddress.Parse(_hostname), _port);
-               Utility.Data.GetInstance().SaveIP(_hostname);
+               Utility.ConfigData.GetInstance().SaveIP(_hostname);
            }
            catch(Exception ex)
            {
@@ -81,7 +81,7 @@ namespace Configuring.Server
  
                    }
                }
-               catch (Exception ex)
+               catch
                {
                    Stop();
                    Helper.ShowMessageBox("下载失败", "下载失败，请重试！");
@@ -132,7 +132,7 @@ namespace Configuring.Server
 
                    }
                }
-               catch (Exception ex)
+               catch
                {
                    Stop();
                    Helper.ShowMessageBox("下载失败", "下载失败，请重试！");
@@ -264,7 +264,7 @@ namespace Configuring.Server
                        }
                    }
                }
-               catch (Exception ex)
+               catch
                {
                    Helper.ShowMessageBox("下载失败", "下载失败，可能网络连接不畅或服务器上没有配置！");
                }

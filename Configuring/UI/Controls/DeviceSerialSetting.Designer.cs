@@ -184,6 +184,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(176, 26);
             this.tbName.TabIndex = 19;
+            this.tbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbName_KeyPress);
             // 
             // DeviceSerialSetting
             // 

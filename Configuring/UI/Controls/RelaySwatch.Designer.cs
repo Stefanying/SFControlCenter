@@ -40,6 +40,7 @@
             this.tbTime = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbRelayName = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -73,7 +74,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(21, 290);
+            this.button1.Location = new System.Drawing.Point(193, 290);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(87, 39);
             this.button1.TabIndex = 6;
@@ -84,7 +85,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(261, 290);
+            this.button2.Location = new System.Drawing.Point(306, 290);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(87, 39);
             this.button2.TabIndex = 7;
@@ -128,16 +129,16 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(27, 248);
+            this.label4.Location = new System.Drawing.Point(27, 244);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 16);
+            this.label4.Size = new System.Drawing.Size(136, 16);
             this.label4.TabIndex = 11;
-            this.label4.Text = "延迟执行:";
+            this.label4.Text = "继电器开关间隔:";
             // 
             // tbTime
             // 
             this.tbTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbTime.Location = new System.Drawing.Point(126, 241);
+            this.tbTime.Location = new System.Drawing.Point(169, 241);
             this.tbTime.Name = "tbTime";
             this.tbTime.Size = new System.Drawing.Size(171, 26);
             this.tbTime.TabIndex = 12;
@@ -165,11 +166,22 @@
             this.cbRelayName.TabIndex = 14;
             this.cbRelayName.SelectedIndexChanged += new System.EventHandler(this.cbRelayName_SelectedIndexChanged);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(343, 244);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 16);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "(毫秒)";
+            // 
             // RelaySwatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 351);
+            this.ClientSize = new System.Drawing.Size(415, 351);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.cbRelayName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbTime);
@@ -196,6 +208,7 @@
             this.Controls.SetChildIndex(this.tbTime, 0);
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.cbRelayName, 0);
+            this.Controls.SetChildIndex(this.label6, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +228,6 @@
         private System.Windows.Forms.TextBox tbTime;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbRelayName;
+        private System.Windows.Forms.Label label6;
     }
 }

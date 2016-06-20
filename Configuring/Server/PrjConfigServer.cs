@@ -25,47 +25,53 @@ namespace Configuring.Server
        //保存投影配置
        public void SavePrjConfig(List<UserPrjSetting> p_prjSetting)
        {
-           XmlDocument config = new XmlDocument();
-           XmlNode root = config.CreateNode(XmlNodeType.Element, "ProjectorData", null);
-           config.AppendChild(root);
-           #region PrjData
-           for (int i = 0; i < p_prjSetting.Count; i++)
+           if (p_prjSetting != null && p_prjSetting.Count > 0)
            {
-               UserPrjSetting currentPrjSetting = _prjSettings[i];
-               XmlNode deviceName = config.CreateNode(XmlNodeType.Element, currentPrjSetting.Name, null);
-
-               for (int cout_mode = 0; cout_mode < currentPrjSetting.DeviceStates.Count; cout_mode++)
+               XmlDocument config = new XmlDocument();
+               XmlNode root = config.CreateNode(XmlNodeType.Element, "ProjectorData", null);
+               config.AppendChild(root);
+               #region PrjData
+               if (p_prjSetting.Count > 0 && p_prjSetting != null)
                {
-                   UserDeviceState tempprjState = currentPrjSetting.DeviceStates[cout_mode];
-                   XmlElement mode = config.CreateElement("Mode");
-                   XmlAttribute _name = config.CreateAttribute("Name");
-                   _name.Value = tempprjState.DeviceMode.ToString();
-                   XmlAttribute _data = config.CreateAttribute("Data");
-                   _data.Value = tempprjState.Data;
-                   mode.Attributes.Append(_name);
-                   mode.Attributes.Append(_data);
-                   deviceName.AppendChild(mode);
+                   for (int i = 0; i < p_prjSetting.Count; i++)
+                   {
+                       UserPrjSetting currentPrjSetting = p_prjSetting[i];
+                       XmlNode deviceName = config.CreateNode(XmlNodeType.Element, currentPrjSetting.Name, null);
+
+                       for (int cout_mode = 0; cout_mode < currentPrjSetting.DeviceStates.Count; cout_mode++)
+                       {
+                           UserPrjOperation tempprjState = currentPrjSetting.DeviceStates[cout_mode];
+                           XmlElement mode = config.CreateElement("Mode");
+                           XmlAttribute _name = config.CreateAttribute("Name");
+                           _name.Value = tempprjState.PrjOperationType.ToString();
+                           XmlAttribute _data = config.CreateAttribute("Data");
+                           _data.Value = tempprjState.Data;
+                           mode.Attributes.Append(_name);
+                           mode.Attributes.Append(_data);
+                           deviceName.AppendChild(mode);
+                       }
+
+                       XmlNode operationset = config.CreateNode(XmlNodeType.Element, "OperationSetting", null);
+                       XmlNode baudRate = config.CreateNode(XmlNodeType.Element, "BaudRate", null);
+                       baudRate.InnerText = currentPrjSetting.Pcs.BaudRate.ToString();
+                       XmlNode dataBit = config.CreateNode(XmlNodeType.Element, "DataBit", null);
+                       dataBit.InnerText = currentPrjSetting.Pcs.DataBits.ToString();
+                       XmlNode stopBit = config.CreateNode(XmlNodeType.Element, "StopBit", null);
+                       stopBit.InnerText = currentPrjSetting.Pcs.StopBits.ToString();
+                       XmlNode parity = config.CreateNode(XmlNodeType.Element, "Parity", null);
+                       parity.InnerText = currentPrjSetting.Pcs.Parity.ToString();
+                       operationset.AppendChild(baudRate);
+                       operationset.AppendChild(dataBit);
+                       operationset.AppendChild(stopBit);
+                       operationset.AppendChild(parity);
+                       deviceName.AppendChild(operationset);
+                       root.AppendChild(deviceName);
+                   }
                }
 
-               XmlNode operationset = config.CreateNode(XmlNodeType.Element, "OperationSetting", null);
-               XmlNode baudRate = config.CreateNode(XmlNodeType.Element, "BaudRate", null);
-               baudRate.InnerText = currentPrjSetting.Pcs.BaudRate.ToString();
-               XmlNode dataBit = config.CreateNode(XmlNodeType.Element, "DataBit", null);
-               dataBit.InnerText = currentPrjSetting.Pcs.DataBits.ToString();
-               XmlNode stopBit = config.CreateNode(XmlNodeType.Element, "StopBit", null);
-               stopBit.InnerText = currentPrjSetting.Pcs.StopBits.ToString();
-               XmlNode parity = config.CreateNode(XmlNodeType.Element, "Parity", null);
-               parity.InnerText = currentPrjSetting.Pcs.Parity.ToString();
-               operationset.AppendChild(baudRate);
-               operationset.AppendChild(dataBit);
-               operationset.AppendChild(stopBit);
-               operationset.AppendChild(parity);
-               deviceName.AppendChild(operationset);
-               root.AppendChild(deviceName);
+               #endregion
+               config.Save(_prjConfigFile);
            }
-
-           #endregion
-           config.Save(_prjConfigFile);
  
        }
 
@@ -100,14 +106,14 @@ namespace Configuring.Server
                    {
                        string _statename = _prjState.Attributes["Name"].Value;
                        string _statedata = _prjState.Attributes["Data"].Value;
-                       PrjState _mode = (PrjState)Enum.Parse(typeof(PrjState), _statename);
-                       UserDeviceState uds = new UserDeviceState(_mode, _statedata);
+                       PrjOperationType _mode = (PrjOperationType)Enum.Parse(typeof(PrjOperationType), _statename);
+                       UserPrjOperation uds = new UserPrjOperation(_mode, _statedata);
                        _ups.DeviceStates.Add(uds);
                    }
                }
                return _prjSettings;
            }
-           catch (Exception ex)
+           catch
            {
                Helper.ShowMessageBox("提示","未找到投影机配置文件!");
                return null;

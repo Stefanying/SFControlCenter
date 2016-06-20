@@ -57,21 +57,6 @@
             this.cbComNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbComNumber.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cbComNumber.FormattingEnabled = true;
-            this.cbComNumber.Items.AddRange(new object[] {
-            "com1",
-            "com2",
-            "com3",
-            "com4",
-            "com5",
-            "com6",
-            "com7",
-            "com8",
-            "com9",
-            "com10",
-            "com11",
-            "com12",
-            "com13",
-            "com14"});
             this.cbComNumber.Location = new System.Drawing.Point(136, 40);
             this.cbComNumber.Name = "cbComNumber";
             this.cbComNumber.Size = new System.Drawing.Size(200, 24);

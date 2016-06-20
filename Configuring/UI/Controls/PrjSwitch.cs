@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Configuring.Business;
 using System.Xml;
+using Configuring.Utility;
 namespace Configuring.UI.Controls
 {
     public partial class PrjSwitch : BaseForm
@@ -77,6 +78,18 @@ namespace Configuring.UI.Controls
                 {
                     cbPrjType.SelectedIndex = 0;
                 }
+
+                for (int i = 0; i < ConfigData.GetInstance().GetSerialPortCount(); i++)
+                {
+                    int _port = i;
+                    cbSerialPort.Items.Add("com"+(_port+1).ToString());
+                }
+
+                if (cbSerialPort.Items.Count > 0)
+                {
+                    cbSerialPort.SelectedIndex = 0;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -91,9 +104,9 @@ namespace Configuring.UI.Controls
             {
                 if (cbPrjType.SelectedItem.ToString() == _prjSetingList[i].Name)
                 {
-                    foreach (UserDeviceState uds in _prjSetingList[i].DeviceStates)
+                    foreach (UserPrjOperation uds in _prjSetingList[i].DeviceStates)
                     {
-                        cbMode.Items.Add(uds.DeviceMode.ToString());
+                        cbMode.Items.Add(uds.PrjOperationType.ToString());
                     }
                     _baudRate = _prjSetingList[i].Pcs.BaudRate;
                     _dataBits = _prjSetingList[i].Pcs.DataBits;
@@ -114,9 +127,9 @@ namespace Configuring.UI.Controls
             {
                 if (cbPrjType.SelectedItem.ToString() == _prjSetingList[i].Name)
                 {
-                    foreach (UserDeviceState uds in _prjSetingList[i].DeviceStates)
+                    foreach (UserPrjOperation uds in _prjSetingList[i].DeviceStates)
                     {
-                        if (cbMode.SelectedItem.ToString() == uds.DeviceMode.ToString())
+                        if (cbMode.SelectedItem.ToString() == uds.PrjOperationType.ToString())
                         {
                             Data = uds.Data;
                         }

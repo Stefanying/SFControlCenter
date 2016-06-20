@@ -12,15 +12,15 @@ namespace Configuring.UI.Controls
     public partial class UserPrjStateList : UserControl
     {
 
-        private List<UserDeviceState> _PrjStates;
-        public List<UserDeviceState> PrjStates
+        private List<UserPrjOperation> _PrjStates;
+        public List<UserPrjOperation> PrjStates
         {
             get { return _PrjStates; }
             set { _PrjStates = value; }
         }
 
-        private UserDeviceState _currentPrjState;
-        public UserDeviceState CurrentPrjState
+        private UserPrjOperation _currentPrjState;
+        public UserPrjOperation CurrentPrjState
         {
             get { return _currentPrjState; }
             set { _currentPrjState = value; }
@@ -49,7 +49,7 @@ namespace Configuring.UI.Controls
             RefreshPrjStateList();
         }
 
-        public void AddPrjState(UserDeviceState uds)
+        public void AddPrjState(UserPrjOperation uds)
         {
             lock (_lock)
             {
@@ -62,7 +62,7 @@ namespace Configuring.UI.Controls
             }
         }
 
-        public void DeletePrjState(UserDeviceState uds)
+        public void DeletePrjState(UserPrjOperation uds)
         {
             lock (_lock)
             {
@@ -82,9 +82,9 @@ namespace Configuring.UI.Controls
                 _currentPrjState = null;
                 if (_PrjStates != null)
                 {
-                    foreach (UserDeviceState uds in _PrjStates)
+                    foreach (UserPrjOperation uds in _PrjStates)
                     {
-                        dbPrjStateList.Rows.Add(GetPrjModeType(uds.DeviceMode),uds.Data);
+                        dbPrjStateList.Rows.Add(uds.PrjOperationType.ToString(),uds.Data);
                     }
                 }
 
@@ -94,23 +94,6 @@ namespace Configuring.UI.Controls
                     _currentPrjState = _PrjStates[_PrjStates.Count - 1];
                 }
             }
-        }
-
-
-
-        string GetPrjModeType(PrjState _mode)
-        {
-            string ret = "开";
-            switch (_mode)
-            {
-                case PrjState.开:
-                    ret = "开";
-                    break;
-                case PrjState.关:
-                    ret = "关";
-                    break;
-            }
-            return ret;
         }
 
         private void dbPrjStateList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -142,8 +125,8 @@ namespace Configuring.UI.Controls
             DeviceDataSetting dds = new DeviceDataSetting();
             if (dds.ShowDialog() == DialogResult.OK)
             {
-                PrjState _mode = (PrjState)Enum.Parse(typeof(PrjState),dds.StateName);
-                UserDeviceState uds = new UserDeviceState(_mode,dds.Data);
+                PrjOperationType _mode = (PrjOperationType)Enum.Parse(typeof(PrjOperationType),dds.StateName);
+                UserPrjOperation uds = new UserPrjOperation(_mode,dds.Data);
                 AddPrjState(uds);
             }
         }
@@ -154,8 +137,15 @@ namespace Configuring.UI.Controls
             {
                 if (_PrjStates != null && _PrjStates.Count > 0 && _currentPrjState != null)
                 {
-                    DeletePrjState(_currentPrjState);
-                    RefreshPrjStateList();
+                    if (_currentPrjState.PrjOperationType.ToString() == "开" || _currentPrjState.PrjOperationType.ToString() == "关")
+                    {
+                        Helper.ShowMessageBox("提示","该项不能删除!");
+                    }
+                    else 
+                    {
+                        DeletePrjState(_currentPrjState);
+                        RefreshPrjStateList();
+                    } 
                 }
             }
         }
@@ -165,12 +155,12 @@ namespace Configuring.UI.Controls
             if (_currentPrjState != null)
             {
                 DeviceDataSetting dds = new DeviceDataSetting();
-                dds.StateName = GetPrjModeType(_currentPrjState.DeviceMode);
+                dds.StateName = _currentPrjState.PrjOperationType.ToString();
                 dds.Data = _currentPrjState.Data;
                 if (dds.ShowDialog() == DialogResult.OK)
                 {
-                    PrjState _mode = (PrjState)Enum.Parse(typeof(PrjState), dds.StateName);
-                    _currentPrjState.DeviceMode = _mode;
+                    PrjOperationType _mode = (PrjOperationType)Enum.Parse(typeof(PrjOperationType), dds.StateName);
+                    _currentPrjState.PrjOperationType = _mode;
                     _currentPrjState.Data = dds.Data;
                     RefreshPrjStateList();
                 }
@@ -182,12 +172,12 @@ namespace Configuring.UI.Controls
             if (_currentPrjState != null)
             {
                 DeviceDataSetting dds = new DeviceDataSetting();
-                dds.StateName = GetPrjModeType(_currentPrjState.DeviceMode);
+                dds.StateName =_currentPrjState.PrjOperationType.ToString();
                 dds.Data = _currentPrjState.Data;
                 if (dds.ShowDialog() == DialogResult.OK)
                 {
-                    PrjState _mode = (PrjState)Enum.Parse(typeof(PrjState), dds.StateName);
-                    _currentPrjState.DeviceMode = _mode;
+                    PrjOperationType _mode = (PrjOperationType)Enum.Parse(typeof(PrjOperationType), dds.StateName);
+                    _currentPrjState.PrjOperationType = _mode;
                     _currentPrjState.Data = dds.Data;
                     RefreshPrjStateList();
                 }

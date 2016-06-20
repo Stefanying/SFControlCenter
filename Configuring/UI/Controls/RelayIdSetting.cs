@@ -97,7 +97,7 @@ namespace Configuring.UI.Controls
 
         private bool CheckId(string id)
         {
-            bool ret = int.Parse(id)<t_ApproachCount;
+            bool ret = int.Parse(id)<=t_ApproachCount;
             if (!ret)
             {
                 Helper.ShowMessageBox("提示","输入的序号超过总路数！");

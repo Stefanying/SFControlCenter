@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\ControlConfiguring\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +27,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Controlcenter\bin\Release\</OutputPath>
+    <OutputPath>..\bin\Release\ControlConfiguring\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,15 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\DefinedName.cs" />
-    <Compile Include="Business\UserDeviceName.cs" />
+    <Compile Include="Business\UserDefinedOperation.cs" />
     <Compile Include="Business\UserAction.cs" />
-    <Compile Include="Business\Area.cs" />
+    <Compile Include="Business\UserArea.cs" />
     <Compile Include="Business\UserPrjSetting.cs" />
-    <Compile Include="Business\UserDeviceState.cs" />
     <Compile Include="Business\UserOpration.cs" />
     <Compile Include="Business\UserOrder.cs" />
     <Compile Include="Business\UserRelaySetting.cs" />
+    <Compile Include="Server\CommunicationServer.cs" />
+    <Compile Include="Server\CustomConfigServer.cs" />
+    <Compile Include="Server\NormalConfigServer.cs" />
+    <Compile Include="Server\PrjConfigServer.cs" />
+    <Compile Include="Server\RelayConfigServer.cs" />
     <Compile Include="UI\Controls\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,7 +271,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\Data.cs" />
+    <Compile Include="Utility\ConfigData.cs" />
     <EmbeddedResource Include="UI\Controls\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>

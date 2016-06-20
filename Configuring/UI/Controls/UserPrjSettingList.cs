@@ -11,10 +11,7 @@ namespace Configuring.UI.Controls
 {
     public partial class UserPrjSettingList : UserControl
     {
-       
-
         public event EventHandler OnCurrentPrjSetChanged;
-
         private List<UserPrjSetting> _upSettings;
         public List<UserPrjSetting> UpSettings
         {
@@ -68,15 +65,14 @@ namespace Configuring.UI.Controls
        
             lock(_lock)
             {
-                if(_upSettings !=null)
+                if (_upSettings != null)
                 {
                     _upSettings.Add(upset);
                 }
                 else
                 {
-                    Helper.ShowMessageBox("添加失败","添加投影机设置失败！");
+                    Helper.ShowMessageBox("添加失败", "添加投影机设置失败！");
                 }
-
                 RefreshPrjSetting();
             }
         }
@@ -189,20 +185,47 @@ namespace Configuring.UI.Controls
 
         private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-              DeviceSerialSetting dss = new DeviceSerialSetting();
-            if (dss.ShowDialog() == DialogResult.OK)
+            try
             {
-                foreach (UserPrjSetting upsetting in _upSettings)
+                DeviceSerialSetting dss = new DeviceSerialSetting();
+                if (dss.ShowDialog() == DialogResult.OK)
                 {
-                    if (upsetting.Name == dss.PrjName)
+                    if (_upSettings != null)
                     {
-                        Helper.ShowMessageBox("提示", "已存在相同的名称");
-                        return;
+                        foreach (UserPrjSetting upsetting in _upSettings)
+                        {
+                            if (upsetting.Name == dss.PrjName)
+                            {
+                                Helper.ShowMessageBox("提示", "已存在相同的名称");
+                                return;
+                            }
+                        }
+                        UserPrjSetting upset = new UserPrjSetting(dss.PrjName, dss.DeviceComSetting);
+                        UserPrjOperation _userPrjOperation_On = new UserPrjOperation(PrjOperationType.开, "");
+                        UserPrjOperation _userPrjOperation_Off = new UserPrjOperation(PrjOperationType.关, "");
+                        upset.AddPrjSetting(_userPrjOperation_On);
+                        upset.AddPrjSetting(_userPrjOperation_Off);
+                        AddPrjSetCommand(upset);
                     }
+                    else
+                    {
+                        UserPrjSetting upset = new UserPrjSetting(dss.PrjName, dss.DeviceComSetting);
+                        UserPrjOperation _userPrjOperation_On = new UserPrjOperation(PrjOperationType.开, "");
+                        UserPrjOperation _userPrjOperation_Off = new UserPrjOperation(PrjOperationType.关, "");
+                        upset.AddPrjSetting(_userPrjOperation_On);
+                        upset.AddPrjSetting(_userPrjOperation_Off);
+                        lock (_lock)
+                        {
+                            _upSettings.Add(upset);
+                            RefreshPrjSetting();
+                        }
+                    }
+                   
                 }
-
-                UserPrjSetting upset = new UserPrjSetting(dss.PrjName,dss.DeviceComSetting);
-                AddPrjSetCommand(upset);
+            }
+            catch (Exception ex)
+            {
+                Helper.ShowMessageBox("异常",ex.Message);
             }
 
             

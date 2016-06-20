@@ -152,26 +152,29 @@ namespace Configuring.UI.Controls
 
         private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_actionList == null)
-            {
-                Helper.ShowMessageBox("提示", "请选择对应展项！");
-                return;
-            }
-
             ActionSetting actionSetting = new ActionSetting();
             if (actionSetting.ShowDialog() == DialogResult.OK)
             {
-                if (!CheckReceiveCommand(actionSetting.ActionCode))
+                if (_actionList != null)
                 {
-                    UserAction action = new UserAction(actionSetting.ActionName, actionSetting.ActionCode);
-                    _actionList.Add(action);
+                    if (!CheckReceiveCommand(actionSetting.ActionCode))
+                    {
+                        UserAction action = new UserAction(actionSetting.ActionName, actionSetting.ActionCode);
+                        _actionList.Add(action);
+                    }
+                    else
+                    {
+                        Helper.ShowMessageBox("提示", "存在相同接收符！");
+                    }
+
+                    RefreshActionList();
                 }
                 else
                 {
-                    Helper.ShowMessageBox("提示", "存在相同接收符！");
+                    UserAction action = new UserAction(actionSetting.ActionName, actionSetting.ActionCode);
+                    _actionList.Add(action);
+                    RefreshActionList();
                 }
-
-                RefreshActionList();
             }
         }
 

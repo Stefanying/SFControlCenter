@@ -50,6 +50,7 @@
             // 
             this.tbData.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tbData.Location = new System.Drawing.Point(136, 149);
+            this.tbData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbData.Mode = Configuring.UI.Controls.EditorMode.Hex;
             this.tbData.Name = "tbData";
             this.tbData.Size = new System.Drawing.Size(226, 119);
@@ -94,7 +95,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 19);
             this.label1.TabIndex = 3;
-            this.label1.Text = "状态名称：";
+            this.label1.Text = "动作名称：";
             // 
             // DeviceDataSetting
             // 

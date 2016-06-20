@@ -105,6 +105,7 @@ namespace Configuring.Business
             set { _dataType = value; }
         }
 
+        //串口或网络通信设置
         object _setting;
         public object Setting
         {
@@ -119,6 +120,7 @@ namespace Configuring.Business
             set { _delayTime = value; }
         }
 
+        //发送数据
         string _data;
         public string Data
         {

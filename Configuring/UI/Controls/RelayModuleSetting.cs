@@ -72,7 +72,7 @@ namespace Configuring.UI.Controls
             SerialPortSetting settingForm = new SerialPortSetting();
             if (_relayCom != null)
             {
-                settingForm.ComNumber = _relayCom.ComNumber;
+               // settingForm.ComNumber = _relayCom.ComNumber;
                 settingForm.BaudRate = _relayCom.BaudRate;
                 settingForm.Databit = _relayCom.DataBits;
                 settingForm.Parity = _relayCom.Parity;

@@ -397,6 +397,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "羿飞中控配置程序";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.tabContent.ResumeLayout(false);
             this.tbConfig.ResumeLayout(false);
             this.tabTimeShaft.ResumeLayout(false);

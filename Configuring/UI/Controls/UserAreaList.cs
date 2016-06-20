@@ -14,15 +14,15 @@ namespace Configuring.UI.Controls
     {
         public event EventHandler OnCurrentAreaChanged;
 
-        private List<Area> _areas;
-        public List<Area> Areas
+        private List<UserArea> _areas;
+        public List<UserArea> Areas
         {
             get { return _areas; }
             set { _areas = value; }
         }
 
-        private Area _currentArea;
-        public Area CurrentArea
+        private UserArea _currentArea;
+        public UserArea CurrentArea
         {
             get { return _currentArea; }
             set { _currentArea = value; }
@@ -47,7 +47,7 @@ namespace Configuring.UI.Controls
             RefreshAreaList();
         }
 
-        public void AddCommand(Area area)
+        public void AddCommand(UserArea area)
         {
             lock (_lock)
             {
@@ -64,7 +64,7 @@ namespace Configuring.UI.Controls
             }
         }
 
-        public void DeleteArea(Area area)
+        public void DeleteArea(UserArea area)
         {
             lock (_lock)
             {
@@ -84,7 +84,7 @@ namespace Configuring.UI.Controls
 
             if (_areas != null)
             {
-                foreach (Area area in _areas)
+                foreach (UserArea area in _areas)
                 {
                     dbAreaList.Rows.Add(area.Name);
                 }
@@ -135,16 +135,25 @@ namespace Configuring.UI.Controls
             AreaSetting areaSetting = new AreaSetting();
             if (areaSetting.ShowDialog() == DialogResult.OK)
             {
-                 foreach(Area area in _areas)
+                if (_areas != null)
                 {
-                    if (area.Name == areaSetting.AreaName)
+                    foreach (UserArea area in _areas)
                     {
-                        Helper.ShowMessageBox("提示", "已存在相同名称！");
-                        return;
+                        if (area.Name == areaSetting.AreaName)
+                        {
+                            Helper.ShowMessageBox("提示", "已存在相同名称！");
+                            return;
+                        }
                     }
+                    UserArea command = new UserArea(areaSetting.AreaName);
+                    AddCommand(command);
                 }
-                Area command = new Area(areaSetting.AreaName);
-                AddCommand(command);
+                else
+                {
+                    UserArea command = new UserArea(areaSetting.AreaName);
+                    _areas.Add(command);
+                    RefreshAreaList();
+                }
             } 
         }
 
@@ -154,7 +163,7 @@ namespace Configuring.UI.Controls
             {
                 if (_areas != null && _areas.Count > 0 && _selectRowIndex != -1)
                 {
-                    Area command = _areas[_selectRowIndex];
+                    UserArea command = _areas[_selectRowIndex];
                     DeleteArea(command);
                 }
             }
@@ -169,7 +178,7 @@ namespace Configuring.UI.Controls
 
                 if (cs.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (Area area in _areas)
+                    foreach (UserArea area in _areas)
                     {
                         if (area.Name == cs.AreaName && area != _currentArea)
                         {
@@ -190,7 +199,7 @@ namespace Configuring.UI.Controls
             {
                 int index = _areas.IndexOf(_currentArea);
 
-                Area temp = new Area(_areas[index - 1].Name);
+                UserArea temp = new UserArea(_areas[index - 1].Name);
                 temp.Actions = _areas[index - 1].Actions;
 
                 _areas[index - 1] = _currentArea;
@@ -206,7 +215,7 @@ namespace Configuring.UI.Controls
             {
                 int index = _areas.IndexOf(_currentArea);
 
-                Area temp = new Area(_areas[index + 1].Name);
+                UserArea temp = new UserArea(_areas[index + 1].Name);
                 temp.Actions = _areas[index + 1].Actions;
 
                 _areas[index + 1] = _currentArea;

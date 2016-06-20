@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Configuring.Business;
-
+using Configuring.Utility;
 namespace Configuring.UI.Controls
 {
     public partial class SerialPortSetting : BaseForm
@@ -52,7 +52,16 @@ namespace Configuring.UI.Controls
         {
             InitializeComponent();
 
-            cbComNumber.Text = "com1";
+            for (int i = 0; i < ConfigData.GetInstance().GetSerialPortCount(); i++)
+            {
+                int _port = i;
+                cbComNumber.Items.Add("com" + (_port + 1).ToString());
+            }
+
+            if (cbComNumber.Items.Count > 0)
+            {
+                cbComNumber.SelectedIndex = 0;
+            }
             cbBaudrate.Text = "9600";
             cbDatabit.Text = "8";
             cbStopbit.Text = "1";

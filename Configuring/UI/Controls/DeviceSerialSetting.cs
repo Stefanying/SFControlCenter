@@ -93,5 +93,11 @@ namespace Configuring.UI.Controls
             DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
+        private void tbName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
     }
 }
