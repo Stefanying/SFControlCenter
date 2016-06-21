@@ -11,18 +11,21 @@ using System.ComponentModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Timers;
+using ControlCenter.UI;
+using ControlCenter.Server;
+using ControlCenter.Utility;
+using Microsoft.Win32;
 namespace ControlCenter
 {
     public partial class MainForm : Form
     {
         HttpServer _httpServer = new HttpServer();
         ClientReceiver _receiver = new ClientReceiver();
-        Listener _udpServer ;
-        Listener _comServer;
+        Listener _udpServer;
         TcpScriptListener _tcpServer ;
         Thread thread;
         EfeeLockDog _lockDog = new EfeeLockDog();
-
+        string[] _keepScript = new string[] { "scriptTemplate.lua", "TimeLineTemplate.lua", "TimeLine.lua", "RunTimeLine.lua", "TimeShaft.lua" };
         public MainForm()
         {
             InitializeComponent();
@@ -34,23 +37,23 @@ namespace ControlCenter
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
             Config.Load(AppDomain.CurrentDomain.BaseDirectory + "Config.ini");//加载配置文件
-
             _udpServer = new UDPListener(int.Parse(Config.Items["UdpPort"]));
-            if (Config.Items["IsComEnable"] == "1")
-            {
-                _comServer = new COMListener(Config.Items["ComPort"], Config.Items["ComNewLine"]);
-            }
+            #region COMListener
+            //if (Utility.ConfigData.GetInstance().GetIsComEnable() == "1")
+            //{
+            //    _comServer = new COMListener(Config.Items["ComPort"], Config.Items["ComNewLine"]);
+            //}
+            #endregion
             _tcpServer = new TcpScriptListener(int.Parse(Config.Items["TcpPort"]));
 
             InitLogger();
-
-            StartServers();
-           
+            CheckIsAutoRun();
+            StartServers();      
         }
 
-
-        #region 定时检测加密狗状态
+        #region 检测加密狗状态
         private void CheckDogState()
         {
             while (true)
@@ -70,8 +73,6 @@ namespace ControlCenter
                      
         }
 
-        #endregion
-
         /// <summary>
         /// 检查加密狗
         /// </summary>
@@ -85,6 +86,7 @@ namespace ControlCenter
             }
             return ret;
         }
+        #endregion
 
         /// <summary>
         /// 初始化日志类
@@ -102,7 +104,6 @@ namespace ControlCenter
                 };
         }
 
-
         private void StartServers()
         {
             try
@@ -117,11 +118,9 @@ namespace ControlCenter
                     if (Config.Items["Http"] == "1") _httpServer.Start(new ScriptServer(Config.Items["ProjectName"]));
                     if (Config.Items["UDP"] == "1") _udpServer.Start(Config.Items["ProjectName"]);
 
-                    if (_comServer != null)
-                        _comServer.Start(Config.Items["ProjectName"]);
-
+                    //if (_comServer != null)
+                    //    _comServer.Start(Config.Items["ProjectName"]);
                     if (Config.Items["TCP"] == "1") _tcpServer.Start(Config.Items["ProjectName"]);
-
                     string scriptRoot = AppDomain.CurrentDomain.BaseDirectory + "Script\\";
                     if (File.Exists(scriptRoot + "TimeLine.lua"))
                     {
@@ -141,8 +140,6 @@ namespace ControlCenter
                 Logger.Exception(ex.Message);
             }
         }
-
-        string[] _keepScript = new string[] { "scriptTemplate.lua", "TimeLineTemplate.lua", "TimeLine.lua", "RunTimeLine.lua" , "TimeShaft.lua"};
 
         /// <summary>
         /// 更新配置
@@ -173,7 +170,6 @@ namespace ControlCenter
             ConfigWriter.LoadTimeLineConfig();
         }
 
-
         /// <summary>
         /// 广播
         /// </summary>
@@ -194,12 +190,10 @@ namespace ControlCenter
         {
             Logger.Info("回收资源中，请稍候...");
             _httpServer.Stop();
-            _udpServer.Stop();
-            
+            _udpServer.Stop();     
             _receiver.Stop();
             DisposeIcon();
         }
-
 
         internal void DisposeIcon()
         {
@@ -240,6 +234,38 @@ namespace ControlCenter
             this.Close();
         }
 
-       
+        private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SoftSetWindow _softSetWindow = new SoftSetWindow();
+            if (_softSetWindow.ShowDialog() == DialogResult.OK)
+            {
+ 
+            }
+        }
+
+        private void CheckIsAutoRun()
+        {
+            if (Utility.ConfigData.GetInstance().GetAutoRun())
+            {
+                Logger.Info("已开机自启动！");
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                rk2.SetValue("ControlCenter", path);
+                rk2.Close();
+                rk.Close();
+            }
+            else
+            {
+                Logger.Info("已取消开机自启动!");
+                string path = Application.ExecutablePath;
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                rk2.DeleteValue("ControlCenter", false);
+                rk2.Close();
+                rk.Close();
+ 
+            }
+        }
     }
 }

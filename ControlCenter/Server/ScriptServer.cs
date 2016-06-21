@@ -10,7 +10,7 @@ using SFLib;
 using System.Net.Sockets;
 using System.IO.Ports;
 
-namespace ControlCenter
+namespace ControlCenter.Server
 {
     //返回执行结果的枚举
     public enum CommandResult

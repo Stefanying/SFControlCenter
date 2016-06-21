@@ -7,8 +7,8 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Threading;
 using LuaApi;
-
-namespace ControlCenter
+using ControlCenter.Utility;
+namespace ControlCenter.Server
 {
     public class ScriptEngineer
     {

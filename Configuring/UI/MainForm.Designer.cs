@@ -55,6 +55,11 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.UserDefinedNamepanel = new System.Windows.Forms.Panel();
             this.customPanel = new System.Windows.Forms.Panel();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ConfigSoftSet = new System.Windows.Forms.GroupBox();
+            this.btnApply = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbSerialPortCount = new System.Windows.Forms.TextBox();
             this.Setting = new System.Windows.Forms.Panel();
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -69,6 +74,8 @@
             this.tbSetting.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.ConfigSoftSet.SuspendLayout();
             this.Setting.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +87,7 @@
             this.tabContent.Controls.Add(this.tbSetting);
             this.tabContent.Controls.Add(this.tabPage1);
             this.tabContent.Controls.Add(this.tabPage2);
+            this.tabContent.Controls.Add(this.tabPage3);
             this.tabContent.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabContent.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabContent.Location = new System.Drawing.Point(0, 78);
@@ -321,6 +329,56 @@
             this.customPanel.Size = new System.Drawing.Size(988, 542);
             this.customPanel.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ConfigSoftSet);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1140, 550);
+            this.tabPage3.TabIndex = 6;
+            this.tabPage3.Text = "软件设置";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ConfigSoftSet
+            // 
+            this.ConfigSoftSet.Controls.Add(this.btnApply);
+            this.ConfigSoftSet.Controls.Add(this.label1);
+            this.ConfigSoftSet.Controls.Add(this.tbSerialPortCount);
+            this.ConfigSoftSet.Location = new System.Drawing.Point(11, 6);
+            this.ConfigSoftSet.Name = "ConfigSoftSet";
+            this.ConfigSoftSet.Size = new System.Drawing.Size(259, 366);
+            this.ConfigSoftSet.TabIndex = 0;
+            this.ConfigSoftSet.TabStop = false;
+            this.ConfigSoftSet.Text = "软件设置";
+            // 
+            // btnApply
+            // 
+            this.btnApply.Location = new System.Drawing.Point(45, 220);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(118, 36);
+            this.btnApply.TabIndex = 2;
+            this.btnApply.Text = "应用";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 19);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "串口数量：";
+            // 
+            // tbSerialPortCount
+            // 
+            this.tbSerialPortCount.Location = new System.Drawing.Point(121, 71);
+            this.tbSerialPortCount.Name = "tbSerialPortCount";
+            this.tbSerialPortCount.Size = new System.Drawing.Size(108, 29);
+            this.tbSerialPortCount.TabIndex = 2;
+            this.tbSerialPortCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSerialPortCount_KeyPress);
+            // 
             // Setting
             // 
             this.Setting.Controls.Add(this.btnUpload);
@@ -406,6 +464,9 @@
             this.tbSetting.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.ConfigSoftSet.ResumeLayout(false);
+            this.ConfigSoftSet.PerformLayout();
             this.Setting.ResumeLayout(false);
             this.Setting.PerformLayout();
             this.ResumeLayout(false);
@@ -446,6 +507,11 @@
         private System.Windows.Forms.Panel customPanel;
         private System.Windows.Forms.Panel UserDefinedNamepanel;
         private System.Windows.Forms.Panel relayNamePanel;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.GroupBox ConfigSoftSet;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbSerialPortCount;
+        private System.Windows.Forms.Button btnApply;
     }
 }
 

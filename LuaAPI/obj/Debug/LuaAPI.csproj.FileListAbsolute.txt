@@ -34,3 +34,12 @@ I:\非标项目\SFControlCenter\LuaAPI\bin\Debug\SFLib.pdb
 I:\非标项目\SFControlCenter\LuaAPI\obj\Debug\LuaAPI.csprojResolveAssemblyReference.cache
 I:\非标项目\SFControlCenter\LuaAPI\obj\Debug\LuaAPI.dll
 I:\非标项目\SFControlCenter\LuaAPI\obj\Debug\LuaAPI.pdb
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Debug\LuaAPI.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Debug\LuaAPI.pdb
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Debug\LuaInterface.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Debug\SFLib.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Debug\lua51.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Debug\SFLib.pdb
+J:\WareHouse\SFControlCenter\LuaAPI\obj\Debug\LuaAPI.csprojResolveAssemblyReference.cache
+J:\WareHouse\SFControlCenter\LuaAPI\obj\Debug\LuaAPI.dll
+J:\WareHouse\SFControlCenter\LuaAPI\obj\Debug\LuaAPI.pdb

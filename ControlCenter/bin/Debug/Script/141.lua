@@ -1,7 +1,11 @@
 require("LuaLib.Split")
 --name oprations ={ name, type, datatype, data, port, time}
 
-local commands = {[1]  = { operationType ="TCP", operationDataType ="Character", operationData ="play",Setting = {ip = "127.0.0.1",port ="3000"},operationTime ="100"}
+local commands = {[1]  = { operationType ="TCP", operationDataType ="Character", operationData ="play",Setting = {ip = "127.0.0.1",port ="3000"},operationTime ="100"},
+[2]  = { operationType ="Com", operationDataType ="Hex", operationData ="560113000001016C",Setting = {comNumber ="com1",baudRate = "19200",dataBit = "8",stopBit = "1",parity = "None"},operationTime ="2000"},
+[3]  = { operationType ="Com", operationDataType ="Hex", operationData ="560113000001006B",Setting = {comNumber ="com1",baudRate = "19200",dataBit = "8",stopBit = "1",parity = "None"},operationTime ="2000"},
+[4]  = { operationType ="Com", operationDataType ="Hex", operationData ="560113000001016C",Setting = {comNumber ="com1",baudRate = "19200",dataBit = "8",stopBit = "1",parity = "None"},operationTime ="2000"},
+[5]  = { operationType ="Com", operationDataType ="Hex", operationData ="560113000001006B",Setting = {comNumber ="com1",baudRate = "19200",dataBit = "8",stopBit = "1",parity = "None"},operationTime ="2000"}
 };
 
 StayAlive(300);

@@ -53,7 +53,7 @@ namespace Configuring.UI
         public MainForm()
         {
             InitializeComponent();
-             LoadConfig();
+            LoadConfig();
 
             plAreaList.Controls.Clear();
             plAreaList.Controls.Add(_arealist);
@@ -138,6 +138,7 @@ namespace Configuring.UI
             _relaysettinglist.RefreshRelay();
             _userdefinedNamelist.RefreshAreaList();
             tbIP.Text = Utility.ConfigData.GetInstance().GetIP();
+            tbSerialPortCount.Text = Utility.ConfigData.GetInstance().GetSerialPortCount().ToString();
             CheckLockState();
         }
 
@@ -546,6 +547,29 @@ namespace Configuring.UI
         {
             SaveConfig();
         }
+
+      
+
+        #region 软件设置
+
+        private void tbSerialPortCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b') e.Handled = "0123456789".IndexOf(char.ToUpper(e.KeyChar)) < 0;
+        }
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            if (tbSerialPortCount.Text != "")
+            {
+                int _count = int.Parse(tbSerialPortCount.Text);
+                Utility.ConfigData.GetInstance().SaveSerialPortCount(_count);
+            }
+            else
+            {
+ 
+            }
+        }
+
+        #endregion
     }
 
     public class StateObject

@@ -7,8 +7,8 @@ using System.Net.Sockets;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
-
-namespace ControlCenter
+using ControlCenter.Utility;
+namespace ControlCenter.Server
 {
     public class StateObject
     {
@@ -79,6 +79,7 @@ namespace ControlCenter
             }
         }
 
+        //接收数据
         private void AcceptData(IAsyncResult ar)
         {
             StateObject receiveData = (StateObject)ar.AsyncState;
@@ -142,12 +143,13 @@ namespace ControlCenter
             }
         }
 
-
+        //重启
         private static void RestartThis()
         {
             Process.Start("Restart.bat");
         }
 
+        //发送文件
         private void SendFile(StateObject receiveData)
         {
             FileStream fs = new FileStream(_configPath, FileMode.Open);
@@ -164,6 +166,7 @@ namespace ControlCenter
             receiveData.client.Close();
         }
 
+        //接收文件
         private void ReceiveFile(StateObject receiveData, string filepath)
         {
             TcpClient client = receiveData.client;
@@ -180,6 +183,7 @@ namespace ControlCenter
             fs.Close();
             receiveData.client.GetStream().Flush();
         }
+
 
         private void SetIP(StateObject receiveData)
         {
@@ -320,51 +324,5 @@ namespace ControlCenter
             }
         }
 
-        //private void ActivateLock(StateObject receiveData)
-        //{
-        //    try
-        //    {
-        //        byte[] data_block = new byte[_blockLength];
-        //        int readLength = receiveData.client.GetStream().Read(data_block, 0, data_block.Length);
-        //        string passwoard = System.Text.Encoding.Default.GetString(data_block, 0, readLength);
-
-        //        string ret = "";
-        //        bool isActive = _dog.Active(_dog.MakeSerialNumber(), passwoard);
-
-        //        if (!_dog.CheckDog())
-        //        {
-        //            ret = "未检测到加密锁！";
-        //        }
-        //        else if (!_dog.CheckPeriod())
-        //        {
-        //            ret = "加密锁已过期！" + Environment.NewLine
-        //                  + "序列号:" + _dog.MakeSerialNumber().ToString();
-        //        }
-        //        else if (!_dog.CheckPassword("SF0002"))
-        //        {
-        //            ret = "加密狗信息错误，不是本软件加密狗！";
-        //        }
-        //        else
-        //        {
-        //            ret = "加密锁在有效期内！";
-        //        }
-
-        //        Byte[] sendBytes = Encoding.UTF8.GetBytes(ret);
-        //        receiveData.client.GetStream().Write(sendBytes, 0, sendBytes.Length);
-        //        receiveData.client.GetStream().Flush();
-        //        receiveData.client.Close();
-
-        //        if (isActive)
-        //        {
-        //            RestartThis();
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        SFLib.Logger.Exception("激活失败！" + ex.Message);
-        //        receiveData.client.GetStream().Flush();
-        //        receiveData.client.Close();
-        //    }
-        //}
     }   
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Configuring.Utility
 {
-    class ConfigData
+   public class ConfigData
     {
         public string GetIP()
         {
@@ -34,6 +34,21 @@ namespace Configuring.Utility
             catch
             {
             }
+        }
+
+        public void SaveSerialPortCount(int p_cout)
+        {
+            try
+            {
+                SFLib.IniFile iniFile = new SFLib.IniFile(_iniFilePath);
+                _serialPortCount = p_cout;
+                iniFile.WriteInteger("Config", "SerialPortCount", _serialPortCount);
+            }
+            catch
+            {
+ 
+            }
+ 
         }
 
         public static ConfigData GetInstance()

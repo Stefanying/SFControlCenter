@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
-namespace ControlCenter
+namespace ControlCenter.Utility
 {
-
     unsafe class Memory
     {
         // Handle for the process heap. This handle is used in all calls to the

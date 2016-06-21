@@ -1,0 +1,173 @@
+<Root>
+  <Relay>
+    <Name>继电器1</Name>
+    <TotoalApproach>8</TotoalApproach>
+    <OperationSetting>
+      <ComNumber>com1</ComNumber>
+      <BaudRate>19200</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+    <RelayData>
+      <Approach Id="1">
+        <Mode Name="吸合" Data="560113000001016C" />
+        <Mode Name="断开" Data="560113000001006B" />
+      </Approach>
+      <Approach Id="2">
+        <Mode Name="吸合" Data="560113000002026E" />
+        <Mode Name="断开" Data="560113000002006C" />
+      </Approach>
+      <Approach Id="3">
+        <Mode Name="吸合" Data="5601130000040472" />
+        <Mode Name="断开" Data="560113000004006E" />
+      </Approach>
+      <Approach Id="4">
+        <Mode Name="吸合" Data="560113000008087A" />
+        <Mode Name="断开" Data="5601130000080072" />
+      </Approach>
+      <Approach Id="5">
+        <Mode Name="吸合" Data="560113000010108A" />
+        <Mode Name="断开" Data="560113000010007A" />
+      </Approach>
+      <Approach Id="6">
+        <Mode Name="吸合" Data="560113000010108A" />
+        <Mode Name="断开" Data="560113000010007A" />
+      </Approach>
+      <Approach Id="7">
+        <Mode Name="吸合" Data="56011300004040EA" />
+        <Mode Name="断开" Data="56011300004000AA" />
+      </Approach>
+      <Approach Id="8">
+        <Mode Name="吸合" Data="560113000080806A" />
+        <Mode Name="断开" Data="56011300008000EA" />
+      </Approach>
+    </RelayData>
+  </Relay>
+  <Relay>
+    <Name>继电器2</Name>
+    <TotoalApproach>9</TotoalApproach>
+    <OperationSetting>
+      <ComNumber>com1</ComNumber>
+      <BaudRate>19200</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+    <RelayData>
+      <Approach Id="1">
+        <Mode Name="吸合" Data="560113000001016C" />
+        <Mode Name="断开" Data="560113000001006B" />
+      </Approach>
+      <Approach Id="2">
+        <Mode Name="吸合" Data="560113000002026E" />
+        <Mode Name="断开" Data="560113000002006C" />
+      </Approach>
+      <Approach Id="3">
+        <Mode Name="吸合" Data="5601130000040472" />
+        <Mode Name="断开" Data="560113000004006E" />
+      </Approach>
+      <Approach Id="4">
+        <Mode Name="吸合" Data="560113000008087A" />
+        <Mode Name="断开" Data="5601130000080072" />
+      </Approach>
+      <Approach Id="5">
+        <Mode Name="吸合" Data="560113000010108A" />
+        <Mode Name="断开" Data="560113000010007A" />
+      </Approach>
+      <Approach Id="6">
+        <Mode Name="吸合" Data="560113000010108A" />
+        <Mode Name="断开" Data="560113000010007A" />
+      </Approach>
+      <Approach Id="7">
+        <Mode Name="吸合" Data="56011300004040EA" />
+        <Mode Name="断开" Data="56011300004000AA" />
+      </Approach>
+      <Approach Id="8">
+        <Mode Name="吸合" Data="560113000080806A" />
+        <Mode Name="断开" Data="56011300008000EA" />
+      </Approach>
+      <Approach Id="9">
+        <Mode Name="吸合" Data="560113000080806A" />
+        <Mode Name="断开" Data="56011300008000EA" />
+      </Approach>
+    </RelayData>
+  </Relay>
+  <Relay>
+    <Name>继电器3</Name>
+    <TotoalApproach>16</TotoalApproach>
+    <OperationSetting>
+      <ComNumber>com1</ComNumber>
+      <BaudRate>9600</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>Odd</Parity>
+    </OperationSetting>
+    <RelayData>
+      <Approach Id="1">
+        <Mode Name="吸合" Data="11111" />
+        <Mode Name="断开" Data="222222" />
+      </Approach>
+      <Approach Id="2">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="3">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="4">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="5">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="6">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="7">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="8">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="9">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="10">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="11">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="12">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="13">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="14">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="15">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+      <Approach Id="16">
+        <Mode Name="吸合" Data="" />
+        <Mode Name="断开" Data="" />
+      </Approach>
+    </RelayData>
+  </Relay>
+</Root>

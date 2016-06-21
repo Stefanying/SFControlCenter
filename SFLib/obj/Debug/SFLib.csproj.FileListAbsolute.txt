@@ -14,3 +14,7 @@ I:\非标项目\SFControlCenter\SFLib\bin\Debug\SFLib.dll
 I:\非标项目\SFControlCenter\SFLib\bin\Debug\SFLib.pdb
 I:\非标项目\SFControlCenter\SFLib\obj\Debug\SFLib.dll
 I:\非标项目\SFControlCenter\SFLib\obj\Debug\SFLib.pdb
+J:\WareHouse\SFControlCenter\SFLib\bin\Debug\SFLib.dll
+J:\WareHouse\SFControlCenter\SFLib\bin\Debug\SFLib.pdb
+J:\WareHouse\SFControlCenter\SFLib\obj\Debug\SFLib.dll
+J:\WareHouse\SFControlCenter\SFLib\obj\Debug\SFLib.pdb

@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Web;
 
-namespace ControlCenter
+namespace ControlCenter.Server
 {
     public class UrlHelper
     {

@@ -35,6 +35,7 @@
             this.cmsNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.还原ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsNotifyIcon.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,24 +62,32 @@
             // cmsNotifyIcon
             // 
             this.cmsNotifyIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.设置ToolStripMenuItem,
             this.还原ToolStripMenuItem,
             this.退出ToolStripMenuItem});
             this.cmsNotifyIcon.Name = "cmsNotifyIcon";
-            this.cmsNotifyIcon.Size = new System.Drawing.Size(101, 48);
+            this.cmsNotifyIcon.Size = new System.Drawing.Size(153, 92);
             // 
             // 还原ToolStripMenuItem
             // 
             this.还原ToolStripMenuItem.Name = "还原ToolStripMenuItem";
-            this.还原ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.还原ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.还原ToolStripMenuItem.Text = "显示";
             this.还原ToolStripMenuItem.Click += new System.EventHandler(this.还原ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.退出ToolStripMenuItem.Text = "关闭";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+            // 
+            // 设置ToolStripMenuItem
+            // 
+            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.设置ToolStripMenuItem.Text = "设置";
+            this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -107,6 +116,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsNotifyIcon;
         private System.Windows.Forms.ToolStripMenuItem 还原ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
 
     }
 }

@@ -5,14 +5,14 @@ using System.Text;
 using SFLib;
 using System.IO;
 
-namespace ControlCenter
+namespace ControlCenter.Utility
 {
     class Config
     {
         public static readonly Dictionary<string, string> Items = new Dictionary<string, string>();
         private static readonly string[] importantConfigParameters =
-            new string[] { "ProjectName", "Protector", "TcpPort", "UdpPort", "IsComEnable" , "ComNewLine", "Http", "TCP", "UDP"};
-
+            new string[] { "ProjectName", "Protector", "TcpPort", "UdpPort","ComNewLine", "Http", "TCP", "UDP"};
+       private static  string _file_path = AppDomain.CurrentDomain.BaseDirectory + "Config.ini";
         public static void Load(string file)
         {
             if (!File.Exists(file))
@@ -25,7 +25,14 @@ namespace ControlCenter
 
             for (int i = 0; i < lines.Length; i++)
             {
-                ParseLine(lines, i);
+                if (lines[i] != "")
+                {
+                    ParseLine(lines, i);
+                }
+                else
+                {
+                    break;
+                }
             }
 
             ExitIfMissingParameters(importantConfigParameters);
@@ -54,8 +61,9 @@ namespace ControlCenter
         {
             try
             {
-                int splitIndex = lines[index].IndexOf('=');
-                Items.Add(lines[index].Substring(0, splitIndex).Trim(), lines[index].Substring(splitIndex + 1).Trim());
+                 int splitIndex = lines[index].IndexOf('=');
+                 Items.Add(lines[index].Substring(0, splitIndex).Trim(), lines[index].Substring(splitIndex + 1).Trim());
+                
             }
             catch
             {

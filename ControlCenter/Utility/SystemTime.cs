@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace ControlCenter
+namespace ControlCenter.Utility
 {
     [StructLayout(LayoutKind.Sequential)]
     struct SYSTEMTIME 

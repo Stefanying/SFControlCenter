@@ -56,3 +56,16 @@ I:\非标项目\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.exe
 I:\非标项目\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.pdb
 J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.exe
 J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.pdb
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\ControlCenter.exe
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\ControlCenter.pdb
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\LuaAPI.dll
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\SFLib.dll
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\LuaInterface.dll
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\lua51.dll
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\LuaAPI.pdb
+J:\WareHouse\SFControlCenter\ControlCenter\bin\Debug\SFLib.pdb
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.csprojResolveAssemblyReference.cache
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.MainForm.resources
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.Properties.Resources.resources
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.csproj.GenerateResource.Cache
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.UI.SoftSetWindow.resources
