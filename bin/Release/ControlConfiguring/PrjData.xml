@@ -1,0 +1,62 @@
+<ProjectorData>
+  <雅图>
+    <Mode Name="开" Data="4130310D" />
+    <Mode Name="关" Data="4130300D" />
+    <OperationSetting>
+      <BaudRate>19200</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+  </雅图>
+  <松下>
+    <Mode Name="开" Data="02504F4E03" />
+    <Mode Name="关" Data="02504F4603" />
+    <OperationSetting>
+      <BaudRate>9600</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+  </松下>
+  <明基>
+    <Mode Name="开" Data="0D2A706F773D6F6E230D" />
+    <Mode Name="关" Data="0D2A706F773D6F6666230D" />
+    <OperationSetting>
+      <BaudRate>115200</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+  </明基>
+  <丽讯>
+    <Mode Name="开" Data="56393953303030310D" />
+    <Mode Name="关" Data="56393953303030320D" />
+    <OperationSetting>
+      <BaudRate>9600</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+  </丽讯>
+  <视美乐>
+    <Mode Name="开" Data="235057523121" />
+    <Mode Name="关" Data="235057523021" />
+    <OperationSetting>
+      <BaudRate>19200</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+  </视美乐>
+  <巴克>
+    <Mode Name="开" Data="411111111" />
+    <Mode Name="关" Data="400000000" />
+    <OperationSetting>
+      <BaudRate>9600</BaudRate>
+      <DataBit>8</DataBit>
+      <StopBit>1</StopBit>
+      <Parity>None</Parity>
+    </OperationSetting>
+  </巴克>
+</ProjectorData>

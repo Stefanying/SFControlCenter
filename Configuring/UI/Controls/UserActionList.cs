@@ -29,6 +29,13 @@ namespace Configuring.UI.Controls
             set { _currentAction = value; }
         }
 
+        private List<UserArea> _areaList;
+        public List<UserArea> AreaList
+        {
+            get { return _areaList; }
+            set { _areaList = value; }
+        }
+
         private object _lock = new object();
         private int _selectRowIndex = 0;
         
@@ -180,7 +187,7 @@ namespace Configuring.UI.Controls
 
                 if (actionSetting.ShowDialog() == DialogResult.OK)
                 {
-                    if (!CheckReceiveCommand(actionSetting.ActionCode) || _currentAction.ReceiveCommand == actionSetting.ActionCode)
+                    if (!CheckCurrentArrayReceiveCommand(actionSetting.ActionCode) || _currentAction.ReceiveCommand == actionSetting.ActionCode || !CheckAllArrayReceiveCommand(actionSetting.ActionCode))
                     {
                         _currentAction.Name = actionSetting.ActionName;
                         _currentAction.ReceiveCommand = actionSetting.ActionCode;
@@ -206,7 +213,7 @@ namespace Configuring.UI.Controls
             ActionSetting actionSetting = new ActionSetting();
             if (actionSetting.ShowDialog() == DialogResult.OK)
             {
-                if (!CheckReceiveCommand(actionSetting.ActionCode) )
+                if (!CheckCurrentArrayReceiveCommand(actionSetting.ActionCode) && !CheckAllArrayReceiveCommand(actionSetting.ActionCode) )
                 {
                     UserAction action = new UserAction(actionSetting.ActionName, actionSetting.ActionCode);
                     _actionList.Add(action);
@@ -230,7 +237,9 @@ namespace Configuring.UI.Controls
             }
         }
 
-        bool CheckReceiveCommand(string command)
+
+        //检测客户端发送命令是否重复
+        bool CheckCurrentArrayReceiveCommand(string command)
         {
             for (int i = 0; i < _actionList.Count; i++)
             {
@@ -238,6 +247,27 @@ namespace Configuring.UI.Controls
                 {
                     return true;
                 }
+            }
+            return false;
+        }
+
+        bool CheckAllArrayReceiveCommand(string command)
+        {
+            if (_areaList != null)
+            {
+                foreach (UserArea _userarea in _areaList)
+                {
+                    foreach (UserAction _useraction in _userarea.Actions)
+                    {
+                        if (_useraction.ReceiveCommand == command)
+                        {
+                            return true;
+                        }
+                      //  return false;
+                    }
+                  //  return false;
+                }
+               // return false;
             }
             return false;
         }

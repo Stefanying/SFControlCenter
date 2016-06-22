@@ -200,6 +200,9 @@
       </Operation>
     </Action>
   </Area>
+  <Area>
+    <AreaName>电子签名</AreaName>
+  </Area>
   <TimeShaft>
     <Action>
       <ActionName>1111</ActionName>
@@ -230,6 +233,10 @@
           <Port>19741</Port>
         </OperationSetting>
       </Operation>
+    </Action>
+    <Action>
+      <ActionName>电子开</ActionName>
+      <ActionReceiveData>111</ActionReceiveData>
     </Action>
   </TimeShaft>
 </Root>

@@ -33,7 +33,6 @@
             // 
             // MyFirstServiceProcessInstaller
             // 
-            this.MyFirstServiceProcessInstaller.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
             this.MyFirstServiceProcessInstaller.Password = null;
             this.MyFirstServiceProcessInstaller.Username = null;
             // 

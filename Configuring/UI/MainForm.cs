@@ -55,27 +55,32 @@ namespace Configuring.UI
             InitializeComponent();
             LoadConfig();
 
+            //展项名称
             plAreaList.Controls.Clear();
             plAreaList.Controls.Add(_arealist);
             _arealist.Areas = _areas;
             _arealist.OnCurrentAreaChanged += OnAreaListUpdated;
             _arealist.Dock = DockStyle.Fill;
           
+            //控制项与客户端发送命令
             pActionList.Controls.Clear();
             pActionList.Controls.Add(_actionlist); 
             _actionlist.OnCurrentActionChange += OnActionListUpdated;
             _actionlist.Dock = DockStyle.Fill;
  
+            //动作
             plOprationlist.Controls.Clear();
             plOprationlist.Controls.Add(_oprationlist);
             _oprationlist.Dock = DockStyle.Fill;
 
+           
             panelTime.Controls.Clear();
             panelTime.Controls.Add(_timeList);
             _timeList.OnCurrentOrderChanged += OnTimeListUpdated;
             _timeList.Dock = DockStyle.Fill;
             _timeList.Orders = _orders;
 
+            //预约
             panelOrder.Controls.Clear();
             panelOrder.Controls.Add(_orderlist);
             _orderlist.Dock = DockStyle.Fill;
@@ -120,6 +125,7 @@ namespace Configuring.UI
             customPanel.Controls.Add(_userdefinedlist);
             _userdefinedlist.Dock = DockStyle.Fill;
 
+            //时间轴
             panelAction.Controls.Clear();
             panelAction.Controls.Add(_shaftList);
             _shaftList.ActionList = _shaft_actions;
@@ -193,6 +199,7 @@ namespace Configuring.UI
             if (_arealist.CurrentArea != null)
             {
                 _actionlist.ActionList = _arealist.CurrentArea.Actions;
+                _actionlist.AreaList = _arealist.Areas;
             }
             else
             {
@@ -221,6 +228,7 @@ namespace Configuring.UI
             if (_shaftList.CurrentAction != null)
             {
                 _timeOperations.Opreations = _shaftList.CurrentAction.Operations;
+                _shaftList.AreaList = _arealist.Areas;
             }
             else
             {

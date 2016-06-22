@@ -1,0 +1,9 @@
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Release\ControlCenter.csprojResolveAssemblyReference.cache
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Release\ControlCenter.MainForm.resources
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Release\ControlCenter.Properties.Resources.resources
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Release\ControlCenter.UI.SoftSetWindow.resources
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Release\ControlCenter.csproj.GenerateResource.Cache
+J:\WareHouse\SFControlCenter\bin\Release\ControlCenter\ControlCenter.exe
+J:\WareHouse\SFControlCenter\bin\Release\ControlCenter\ControlCenter.pdb
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Release\ControlCenter.exe
+J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Release\ControlCenter.pdb

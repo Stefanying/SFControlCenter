@@ -1,0 +1,8 @@
+J:\WareHouse\SFControlCenter\AutoMonitor\bin\Release\AutoMonitor.exe.config
+J:\WareHouse\SFControlCenter\bin\Release\ControlCenter\AutoMonitor.exe.config
+J:\WareHouse\SFControlCenter\bin\Release\ControlCenter\AutoMonitor.exe
+J:\WareHouse\SFControlCenter\bin\Release\ControlCenter\AutoMonitor.pdb
+J:\WareHouse\SFControlCenter\AutoMonitor\obj\x86\Release\AutoMonitor.ProjectInstaller.resources
+J:\WareHouse\SFControlCenter\AutoMonitor\obj\x86\Release\AutoMonitor.csproj.GenerateResource.Cache
+J:\WareHouse\SFControlCenter\AutoMonitor\obj\x86\Release\AutoMonitor.exe
+J:\WareHouse\SFControlCenter\AutoMonitor\obj\x86\Release\AutoMonitor.pdb

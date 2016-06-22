@@ -1,0 +1,4 @@
+J:\WareHouse\SFControlCenter\SFLib\bin\Release\SFLib.dll
+J:\WareHouse\SFControlCenter\SFLib\bin\Release\SFLib.pdb
+J:\WareHouse\SFControlCenter\SFLib\obj\Release\SFLib.dll
+J:\WareHouse\SFControlCenter\SFLib\obj\Release\SFLib.pdb

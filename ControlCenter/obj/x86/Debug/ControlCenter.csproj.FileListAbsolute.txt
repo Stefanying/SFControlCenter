@@ -69,3 +69,5 @@ J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.MainForm.
 J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.Properties.Resources.resources
 J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.csproj.GenerateResource.Cache
 J:\WareHouse\SFControlCenter\ControlCenter\obj\x86\Debug\ControlCenter.UI.SoftSetWindow.resources
+J:\WareHouse\SFControlCenter\bin\Debug\ControlCenter\ControlCenter.exe
+J:\WareHouse\SFControlCenter\bin\Debug\ControlCenter\ControlCenter.pdb

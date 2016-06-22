@@ -1,0 +1,9 @@
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Release\LuaAPI.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Release\LuaAPI.pdb
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Release\LuaInterface.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Release\SFLib.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Release\lua51.dll
+J:\WareHouse\SFControlCenter\LuaAPI\bin\Release\SFLib.pdb
+J:\WareHouse\SFControlCenter\LuaAPI\obj\Release\LuaAPI.csprojResolveAssemblyReference.cache
+J:\WareHouse\SFControlCenter\LuaAPI\obj\Release\LuaAPI.dll
+J:\WareHouse\SFControlCenter\LuaAPI\obj\Release\LuaAPI.pdb

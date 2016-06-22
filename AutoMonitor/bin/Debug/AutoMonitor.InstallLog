@@ -220,3 +220,160 @@ System.ComponentModel.Win32Exception: 指定的服务未安装。
    assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
    logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
 正在将事件日志还原到源 MyWindowService 的前一状态。
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+已成功安装服务 MyWindowService。
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在提交程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在回滚程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在将事件日志还原到源 MyWindowService 的前一状态。
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在回滚程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在将事件日志还原到源 MyWindowService 的前一状态。
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在回滚程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在将事件日志还原到源 MyWindowService 的前一状态。
+正在卸载程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在移除 EventLog 源 MyWindowService。
+正在从系统中移除服务 MyWindowService...
+已成功地从系统中移除服务 MyWindowService。
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+已成功安装服务 MyWindowService。
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在提交程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在卸载程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在移除 EventLog 源 MyWindowService。
+正在从系统中移除服务 MyWindowService...
+已成功地从系统中移除服务 MyWindowService。
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+已成功安装服务 MyWindowService。
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在提交程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在卸载程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在移除 EventLog 源 MyWindowService。
+正在从系统中移除服务 MyWindowService...
+已成功地从系统中移除服务 MyWindowService。
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+已成功安装服务 MyWindowService。
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在提交程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在卸载程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在移除 EventLog 源 MyWindowService。
+正在从系统中移除服务 MyWindowService...
+已成功地从系统中移除服务 MyWindowService。
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+已成功安装服务 MyWindowService。
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在提交程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在安装服务 MyWindowService...
+正在日志 Application 中创建 EventLog 源 MyWindowService...
+正在回滚程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在将事件日志还原到源 MyWindowService 的前一状态。
+正在卸载程序集“J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe”。
+受影响的参数是:
+   logtoconsole = 
+   assemblypath = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.exe
+   logfile = J:\WareHouse\SFControlCenter\AutoMonitor\bin\Debug\AutoMonitor.InstallLog
+正在移除 EventLog 源 MyWindowService。
+正在从系统中移除服务 MyWindowService...
+已成功地从系统中移除服务 MyWindowService。

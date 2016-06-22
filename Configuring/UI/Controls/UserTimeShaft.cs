@@ -21,6 +21,13 @@ namespace Configuring.UI.Controls
             set { _actionList = value; }
         }
 
+        private List<UserArea> _areaList;
+        public List<UserArea> AreaList
+        {
+            get { return _areaList; }
+            set { _areaList = value; }
+        }
+
         private UserAction _currentAction;
 
         public UserAction CurrentAction
@@ -150,6 +157,27 @@ namespace Configuring.UI.Controls
             return false;
         }
 
+        bool CheckAllArrayReceiveCommand(string command)
+        {
+            if (_areaList != null)
+            {
+                foreach (UserArea _userarea in _areaList)
+                {
+                    foreach (UserAction _useraction in _userarea.Actions)
+                    {
+                        if (_useraction.ReceiveCommand == command)
+                        {
+                            return true;
+                        }
+                        //  return false;
+                    }
+                    //  return false;
+                }
+                // return false;
+            }
+            return false;
+        }
+
         private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ActionSetting actionSetting = new ActionSetting();
@@ -157,7 +185,7 @@ namespace Configuring.UI.Controls
             {
                 if (_actionList != null)
                 {
-                    if (!CheckReceiveCommand(actionSetting.ActionCode))
+                    if (!CheckReceiveCommand(actionSetting.ActionCode)&&!CheckAllArrayReceiveCommand(actionSetting.ActionCode))
                     {
                         UserAction action = new UserAction(actionSetting.ActionName, actionSetting.ActionCode);
                         _actionList.Add(action);
@@ -188,7 +216,7 @@ namespace Configuring.UI.Controls
 
                 if (actionSetting.ShowDialog() == DialogResult.OK)
                 {
-                    if (!CheckReceiveCommand(actionSetting.ActionCode) || _currentAction.ReceiveCommand == actionSetting.ActionCode)
+                    if (!CheckReceiveCommand(actionSetting.ActionCode) || _currentAction.ReceiveCommand == actionSetting.ActionCode || !CheckAllArrayReceiveCommand(actionSetting.ActionCode))
                     {
                         _currentAction.Name = actionSetting.ActionName;
                         _currentAction.ReceiveCommand = actionSetting.ActionCode;
